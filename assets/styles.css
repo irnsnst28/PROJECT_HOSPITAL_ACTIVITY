@@ -1,0 +1,2678 @@
+
+/* Import Poppins font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Light Blue & Bluish-Green Color Palette */
+  --primary: #66bb69;           /* Soft Sky Blue */
+  --primary-dark: #5aa85d;      /* Medium Blue */
+  --primary-light: #7bc67e;     /* Light Blue */
+  --secondary: #66bb69;         /* Soft Bluish Green */
+  --accent: #66bb69;            /* Muted Teal */
+  --light: #f0fee6;             /* Ice Blue */
+  --success: #66bb69;           /* Soft Teal */
+  --info: #66bb69;              /* Light Sky Blue */
+  --warning: #FFD5A3;           /* Soft Peach */
+  --danger: #FFA5A5;            /* Soft Coral */
+  --background: #ffffff; /* Gradient Background */
+  --text-color: #333333;        /* Deep Blue Gray */
+  --border-color: #66bb69;      /* Light Blue Border */
+  --shadow-light: rgba(102, 187, 105, 0.15);   /* Soft Blue Shadow */
+  --shadow-medium: rgba(102, 187, 105, 0.25);  /* Medium Blue Shadow */
+  --transition-speed: 0.3s;
+  --animation-duration: 0.4s;
+  --border-radius: 25px;
+}
+
+/* Welcome Screen Styles */
+.welcome-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #e8f5e9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.welcome-screen.fade-out {
+  opacity: 0;
+}
+
+.welcome-content {
+  text-align: center;
+  color: #333333;
+}
+
+.logo-container {
+  margin-bottom: 2rem;
+}
+
+.logo {
+  width: 150px;
+  height: auto;
+}
+
+.welcome-title {
+  font-size: 2.5rem;
+  color: #333333;
+  margin-bottom: 1rem;
+}
+
+.welcome-subtitle {
+  font-size: 1.2rem;
+  color: #666666;
+  margin-bottom: 2rem;
+}
+
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #66bb69;
+  border-top: 5px solid #5aa85d;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* BODY & GLOBAL ANIMATIONS */
+body {
+  background: var(--background);
+  color: var(--text-color);
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn var(--animation-duration) ease-out;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* LOADING SCREEN */
+#loadingScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9000;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+#loadingScreen.visible {
+  opacity: 1;
+}
+
+/* LOADER */
+.loader {
+  border: 10px solid #f0fee6;
+  border-top: 10px solid #66bb69;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spinSlow 2.5s linear infinite, pulseGlow 1.5s ease-in-out infinite alternate;
+  box-shadow: 0 0 20px var(--shadow-medium);
+}
+@keyframes spinSlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 10px rgba(76,175,80,0.4); }
+  100% { box-shadow: 0 0 25px rgba(76,175,80,0.8); }
+}
+
+/* LOADER TEXT */
+.loader-text {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-dark);
+  animation: pulseText 1.8s infinite alternate;
+}
+@keyframes pulseText {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.1); opacity: 1; }
+}
+
+/* SURPRISE ICON */
+.surprise-icon {
+  font-size: 2.5rem;
+  margin-top: 15px;
+  animation: rotateEmoji 5s linear infinite, bounce 2s infinite alternate;
+}
+@keyframes rotateEmoji {
+  0%, 100% { content: "💚"; }
+  25% { content: "😊"; }
+  50% { content: "✨"; }
+  75% { content: "🚀"; }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* PROGRESS DOTS */
+.progress-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.progress-dots span {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  animation: blink 1.5s infinite ease-in-out;
+}
+.progress-dots span:nth-child(1) { animation-delay: 0.2s; }
+.progress-dots span:nth-child(2) { animation-delay: 0.4s; }
+.progress-dots span:nth-child(3) { animation-delay: 0.6s; }
+@keyframes blink {
+  0% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0.3; transform: scale(1); }
+}
+
+/* PULSE BACKGROUND */
+#loadingScreen::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, var(--secondary) 0%, var(--background) 100%);
+  z-index: -1;
+  animation: backgroundPulse 5s infinite alternate;
+}
+@keyframes backgroundPulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.05); opacity: 1; }
+}
+
+/* LOADER IMAGE */
+.loader-image {
+  margin-top: 20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 4px solid var(--primary-dark);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  animation: zoomIn 1s ease-out forwards;
+}
+@keyframes zoomIn {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* LOGIN BOX */
+#loginBox {
+  width: 400px;
+  max-width: 90%;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  padding: 30px;
+  text-align: center;
+  transition: border-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+#loginBox:hover {
+  border-color: var(--primary);
+  transform: scale(1.02);
+}
+#loginForm input:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(76,175,80,0.5);
+  border-color: var(--primary);
+}
+.btn-primary:hover {
+  background-color: #45a049;
+  transform: scale(1.02);
+}
+.surprise {
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--primary-dark);
+  animation: fadeInUp 1s ease-out forwards;
+  opacity: 0;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* NAVBAR - Enhanced Pediatric Design */
+.navbar-custom {
+  background: #388E3C !important;
+  padding: 1rem;
+}
+.navbar-custom .navbar-brand {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 1.5rem;
+  color: #f3f6f8 !important; /* Dark Blue */
+  text-shadow: none;
+  font-weight: 700;
+}
+.navbar-custom .nav-link,
+.navbar-custom .btn {
+  color: white !important;
+  font-weight: 600;
+  transition: all var(--transition-speed) ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+.navbar-custom .nav-link:hover {
+  color: white !important;
+  transform: scale(1.05);
+}
+.navbar-custom .btn-outline-light {
+  border-color: white;
+  color: white !important;
+}
+.navbar-custom .btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white !important;
+}
+.header-logo {
+  max-height: 90px;
+  margin-right: 10px;
+}
+
+/* TABLES */
+.table-responsive {
+  animation: tableFade 0.4s ease-out;
+}
+@keyframes tableFade {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.table-container {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+/* Nursing History Styles */
+.nursing-history-text {
+  padding: 8px;
+  color: #333;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-line;
+  max-height: 150px;
+  overflow-y: auto;
+  border-radius: 4px;
+  background-color: #fff;
+}
+.table {
+  margin-bottom: 0;
+  width: 100%;
+  background: #fff;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.table thead th {
+  background: #66bb69;
+  color: white;
+  font-weight: 600;
+  padding: 15px;
+  font-size: 0.95rem;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.table tbody tr {
+  transition: all 0.2s ease;
+}
+.table tbody tr:hover {
+  background-color: rgba(102, 187, 105, 0.05);
+  transform: translateY(-1px);
+}
+.table td {
+  padding: 12px 15px;
+  vertical-align: middle;
+  border-bottom: 1px solid #e9ecef;
+  color: #495057;
+  font-size: 0.9rem;
+}
+.table tbody td,
+.table tbody th {
+  vertical-align: middle;
+  white-space: normal;
+  word-wrap: break-word;
+}
+.table thead th:last-child,
+.table tbody td:last-child {
+  width: 130px; /* Actions column */
+}
+.empty-record-message {
+  text-align: center;
+  padding: 30px;
+  color: #6c757d;
+  font-style: italic;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+/* PAGINATION */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.pagination {
+  margin-top: 20px;
+}
+.pagination .page-item .page-link {
+  color: #66bb69;
+  padding: 8px 16px;
+  border: 1px solid #dee2e6;
+}
+.pagination .page-item.active .page-link {
+  background-color: #66bb69;
+  border-color: #66bb69;
+  color: white;
+}
+.pagination .page-item .page-link:hover {
+  background-color: #f0fee6;
+  border-color: #66bb69;
+  color: #66bb69;
+}
+
+/* FORMS - Enhanced Pediatric Design */
+.form-control {
+  border-radius: var(--border-radius);
+  border: 2px solid var(--border-color);
+  padding: 12px 15px;
+  transition: all var(--transition-speed) ease;
+}
+
+.form-control:focus {
+  border-color: #66bb69;
+  box-shadow: 0 0 0 0.2rem rgba(102, 187, 105, 0.25);
+}
+
+/* BUTTONS - Light Theme */
+.btn {
+  border-radius: 25px;
+  padding: 10px 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  box-shadow: 0 4px 8px rgba(102, 187, 105, 0.2);
+  color: white !important;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(102, 187, 105, 0.3);
+  filter: brightness(1.05);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* Primary Button */
+.btn-primary {
+  background: #66bb69;
+  color: white !important;
+}
+
+.btn-primary:hover {
+  background: #5aa85d;
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background: #66bb69;
+  color: white !important;
+}
+
+.btn-secondary:hover {
+  background: #5aa85d;
+}
+
+/* Success Button */
+.btn-success {
+  background: #66bb69;
+  color: white !important;
+}
+
+.btn-success:hover {
+  background: #5aa85d;
+}
+
+/* Info Button */
+.btn-info {
+  background: #66bb69;
+  color: white !important;
+}
+
+.btn-info:hover {
+  background: #5aa85d;
+}
+
+/* Add Button */
+.btn-add {
+  background: #66bb69;
+  color: white !important;
+  padding: 12px 30px;
+}
+
+.btn-add:hover {
+  background: #5aa85d;
+}
+
+/* Edit Extra Info Button */
+.btn-edit-info {
+  background: #66bb69;
+  color: white !important;
+  border-radius: 50px;
+  padding: 12px 30px;
+}
+
+.btn-edit-info:hover {
+  background: #5aa85d;
+}
+
+/* Outline Primary Button */
+.btn-outline-primary {
+  border: 2px solid #66bb69;
+  background: transparent;
+  color: #66bb69 !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary.active {
+  background: #66bb69;
+  color: white !important;
+  border-color: #66bb69;
+}
+
+/* Modal Buttons */
+.modal-footer .btn-success,
+.modal-footer .btn-primary {
+  background-color: #4e73df !important;
+  color: white !important;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.modal-footer .btn-danger {
+  background-color: #e74a3b !important;
+  color: white !important;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.modal-footer .btn-secondary {
+  background-color: #f6c23e !important;
+  color: #333333 !important;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.modal-footer .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  opacity: 0.9;
+}
+
+/* Search Button */
+.search-btn {
+  background: #66bb69 !important;
+  color: white !important;
+}
+
+.search-btn:hover {
+  background: #5aa85d !important;
+}
+
+/* Toggle Button */
+.toggle-btn {
+  background: #66bb69;
+  color: white !important;
+}
+
+.toggle-btn:hover,
+.toggle-btn.active {
+  background: #5aa85d;
+  color: white !important;
+}
+
+/* Button Group */
+.btn-group .btn {
+  background: #66bb69;
+  color: white !important;
+}
+
+.btn-group .btn:hover,
+.btn-group .btn.active {
+  background: #5aa85d;
+  color: white !important;
+}
+
+/* Action Buttons in Tables */
+.table .btn-action {
+  padding: 8px 16px;
+  margin: 0 3px;
+  font-size: 0.9rem;
+  border-radius: 25px;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+
+.table .btn-view,
+.mar-table .btn-view,
+.reconciliation-table .btn-view,
+.nursing-history-table .btn-view {
+  background-color: #4e73df !important;
+  color: white !important;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.table .btn-edit,
+.mar-table .btn-edit,
+.reconciliation-table .btn-edit,
+.nursing-history-table .btn-edit {
+  background-color: #f6c23e !important;
+  color: #333333 !important;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.table .btn-delete,
+.mar-table .btn-delete,
+.reconciliation-table .btn-delete,
+.nursing-history-table .btn-delete {
+  background-color: #e74a3b !important;
+  color: white !important;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.table .btn-action:hover,
+.mar-table .btn-action:hover,
+.reconciliation-table .btn-action:hover,
+.nursing-history-table .btn-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  opacity: 0.9;
+}
+
+/* Practice and Registry badges */
+.badge-practice {
+  background-color: #6c757d;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+}
+
+.badge-registry {
+  background-color: #6c757d;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+}
+
+/* Table header colors */
+.table thead th,
+.mar-table thead th,
+.reconciliation-table thead th,
+.nursing-history-table thead th {
+  background: #e8f5e9;
+  color: #333333;
+  font-weight: 600;
+  padding: 15px;
+  font-size: 0.95rem;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Add Planning Button */
+.btn-add-planning {
+  background: #66bb69;
+  color: white !important;
+  padding: 12px 30px;
+  border-radius: 50px;
+}
+
+.btn-add-planning:hover {
+  background: #5aa85d;
+}
+
+/* MODALS - Enhanced Pediatric Design */
+.card {
+  border-radius: var(--border-radius);
+  border: none;
+  box-shadow: 0 4px 15px rgba(102, 187, 105, 0.15);
+  background: #f0fee6;
+  backdrop-filter: blur(10px);
+  transition: transform var(--transition-speed) ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.modal-content {
+  background: #f0fee6;
+  border: 2px solid #66bb69;
+  border-radius: 25px;
+  box-shadow: 0 8px 20px rgba(102, 187, 105, 0.25);
+  position: relative;
+  z-index: 1050;
+}
+
+.modal-header {
+  background: #e8f5e9;
+  color: #333333;
+  border-radius: 23px 23px 0 0;
+  border-bottom: none;
+  padding: 15px 20px;
+}
+
+.modal-body {
+  background: #ffffff;
+  padding: 20px;
+}
+
+.modal-footer {
+  background: #f0fee6;
+  border-radius: 0 0 23px 23px;
+  border-top: none;
+  padding: 15px 20px;
+}
+
+/* Medication modal specific styles */
+#medicationModal .modal-content {
+  position: relative;
+  z-index: 1050;
+}
+
+#medicationModal .form-control {
+  z-index: 1051;
+  position: relative;
+  background-color: #fff;
+}
+
+#medicationModal .modal-dialog {
+  margin: 1.75rem auto;
+}
+
+#viewMedDetails {
+  overflow-y: auto;
+  max-height: 300px;
+  white-space: pre-line;
+}
+
+/* Ensure medication text is fully visible */
+#medicationModal textarea {
+  min-height: 200px;
+}
+
+/* Patient Details Modal */
+.patient-details-modal .modal-content {
+  background: #f0fee6;
+}
+
+.patient-details-modal .modal-header {
+  background: #e8f5e9;
+  color: #333333;
+}
+
+.patient-details-modal .modal-body {
+  background: #f0fee6;
+}
+
+/* Full Image Modal */
+#fullImageModal .modal-content {
+  background: #f0fee6;
+}
+
+#fullImageModal .modal-header {
+  background: #e8f5e9;
+}
+
+#fullImageModal .modal-body {
+  background: #f0fee6;
+}
+
+/* Card styles to match modals */
+.card {
+  background: #f0fee6;
+  border: none;
+  box-shadow: 0 4px 15px rgba(102, 187, 105, 0.15);
+}
+
+/* Form backgrounds in modals */
+.modal .form-control {
+  background: white;
+  border: 1px solid #66bb69;
+  border-radius: 8px;
+}
+
+.modal .form-control:focus {
+  background: white;
+  border-color: #66bb69;
+  box-shadow: 0 0 0 0.2rem rgba(102, 187, 105, 0.25);
+}
+
+/* OFFCANVAS SIDEBAR */
+.offcanvas-header,
+.offcanvas-body {
+  color: var(--text-color);
+}
+
+/* RECORD CARDS - Enhanced Pediatric Design */
+.record-card {
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 12px var(--shadow-light);
+  color: var(--text-color);
+  transition: all var(--transition-speed) ease;
+}
+
+.record-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px var(--shadow-medium);
+}
+
+.record-header {
+  background: white;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px var(--shadow-light);
+  margin-bottom: 25px;
+}
+
+.record-header i {
+  font-size: 1.5rem;
+  color: var(--primary-dark);
+  margin-right: 0.5rem;
+}
+
+.record-header h4 {
+  margin: 0;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.record-header p {
+  margin: 5px 0 0;
+  color: var(--text-color);
+}
+
+.record-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  margin-top: 0.25rem;
+}
+
+.empty-record-message {
+  text-align: center;
+  font-style: italic;
+  color: var(--text-color);
+  padding: 0.75rem;
+  border: 1px dashed var(--border-color);
+  border-radius: var(--border-radius);
+  margin-top: 1rem;
+}
+
+/* IMAGE NOTE / PREVIEW STYLES */
+.image-note-container {
+  display: inline-block;
+  position: relative;
+  margin: 5px;
+  text-align: center;
+}
+.remove-btn {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  border-radius: 50%;
+  padding: 2px 6px;
+  background-color: var(--primary);
+  color: #FFF;
+  border: none;
+  cursor: pointer;
+}
+.image-note-input {
+  margin-top: 5px;
+  width: 100px;
+  font-size: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 2px 4px;
+}
+.view-image-container {
+  display: inline-block;
+  margin: 5px;
+  text-align: center;
+}
+.view-image-container img {
+  max-width: 100px;
+  border-radius: var(--border-radius);
+}
+.image-note-display {
+  font-size: 12px;
+  color: var(--text-color);
+  margin-top: 3px;
+}
+
+/* TABS */
+.nav-tabs {
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.nav-tabs .nav-link {
+  border-radius: 8px 8px 0 0;
+  color: #666;
+  padding: 10px 15px;
+  margin-right: 2px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-tabs .nav-link:hover {
+  background-color: #f5f5f5;
+  border-color: #e0e0e0;
+  color: #388E3C;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-tabs .nav-link.active {
+  background: white;
+  color: #388E3C;
+  border: 1px solid #e0e0e0;
+  border-bottom: 2px solid white;
+  margin-bottom: -2px;
+  font-weight: 600;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+}
+
+.nav-tabs .nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #388E3C;
+  animation: tabActivate 0.3s ease-in-out;
+}
+
+@keyframes tabActivate {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+.tab-content .tab-pane {
+  padding: 1rem 0;
+}
+
+/* Make tabs scrollable on smaller screens */
+.nav-tabs {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  scrollbar-width: thin;
+  padding-bottom: 2px; /* Add padding to prevent scrollbar from covering the bottom border */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.nav-tabs::-webkit-scrollbar {
+  height: 4px;
+}
+
+.nav-tabs::-webkit-scrollbar-thumb {
+  background-color: rgba(56, 142, 60, 0.3); /* Match primary color */
+  border-radius: 10px;
+}
+
+.nav-tabs::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(56, 142, 60, 0.5); /* Darker on hover */
+}
+
+.nav-tabs::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 10px;
+}
+
+/* Tab content styling */
+.tab-content {
+  background-color: #fff;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 15px 0;
+}
+
+/* Patient tabs specific styling */
+#patientTabs {
+  display: flex;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 8px 8px 0 0;
+  padding: 5px 5px 0 5px;
+}
+
+#patientTabs .nav-item {
+  margin-right: 2px;
+}
+
+#patientTabs .nav-link {
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  white-space: nowrap;
+  border-radius: 6px 6px 0 0;
+}
+
+/* Add a subtle indicator for tabs with content */
+#patientTabs .nav-link.has-content::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #388E3C;
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+/* Truncate specific content fields */
+#medName {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Truncate textarea fields */
+#diagnosisNote, #planningNote {
+  white-space: pre-wrap;
+  overflow: auto;
+  max-height: 150px;
+}
+
+/* FOOTER - Enhanced Pediatric Design */
+footer {
+  background: #66bb69;
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: auto;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 -4px 12px rgba(102, 187, 105, 0.15);
+  font-weight: 700;
+}
+footer a {
+  color: white;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+  color: #E8F5E9;
+}
+
+/* RESPONSIVE TABLE */
+@media (max-width: var(--breakpoint-mobile)) {
+  .table thead {
+    display: none;
+  }
+  .table tbody tr {
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .table tbody tr td {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border-top: 1px solid var(--border-color);
+  }
+  .table tbody tr td::before {
+    content: attr(data-label);
+    font-weight: bold;
+  }
+}
+#medicationTableBody td:nth-child(2) {
+  white-space: pre-wrap;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+#mainContent {
+  flex: 1 0 auto;
+  min-height: 100vh;
+  width: 100%;
+  display: none;
+  padding-bottom: 100px; /* Add padding to prevent content from being hidden behind footer */
+}
+
+#mainContent[style*="display: block"] {
+  display: block !important;
+}
+
+/* MEDIA QUERY FOR MEDIUM SCREENS (769px to ~981px width, 898px height) */
+@media (min-width: 769px) and (max-width: 981px), (min-height: 898px) {
+  .navbar-custom .navbar-brand,
+  .navbar-custom .nav-link,
+  .navbar-custom .btn {
+    font-size: 0.9rem;
+  }
+  .table thead th, .table tbody td {
+    font-size: 0.85rem;
+    padding: 0.4rem;
+  }
+  .table tbody td {
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+  .pagination .page-link {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.8rem;
+  }
+  .modal-dialog {
+    max-width: 95%;
+  }
+  .loader {
+    width: 90px;
+    height: 90px;
+    border-width: 8px;
+  }
+  .loader-text {
+    font-size: 1.3rem;
+  }
+}
+/* 4) MEDIA QUERY: For screens between 770px and 1399px wide */
+@media (min-width: 770px) and (max-width: 1399px) {
+  .table thead th,
+  .table tbody td {
+    font-size: 0.9rem;
+    padding: 0.4rem;
+  }
+  .table {
+    font-size: 0.9rem;
+  }
+}
+
+/* FULL IMAGE MODAL CUSTOM STYLES */
+#fullImageModal .modal-dialog {
+  max-width: 80vw;
+  margin: auto;
+}
+#fullImageModal .modal-content {
+  background: #fff;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+#fullImageView {
+  width: 50%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+#fullImageNote {
+  font-size: 1rem;
+  color: #666;
+  margin: 10px;
+  text-align: center;
+}
+#fullImageModal .modal-body {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* SEARCH CONTAINER & INPUT ANIMATIONS */
+.search-container {
+  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+.search-input {
+  transition: width var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  width: 200px;
+}
+.search-input:focus {
+  width: 250px;
+  box-shadow: 0 0 5px rgba(102, 187, 105, 0.5);
+  outline: none;
+}
+
+/* ALERTS */
+.custom-alert {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  border-radius: 5px;
+  z-index: 99999;
+  font-weight: bold;
+  color: #fff;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: all var(--transition-speed) ease;
+}
+.alert-success {
+  background-color: var(--success);
+  color: white;
+}
+.alert-error {
+  background-color: #E53935;
+}
+/* Custom Warning Alert Styling */
+#patientAlertNotification {
+  border-radius: 5px;
+  padding: 15px 20px;
+  font-size: 1rem;
+}
+
+#patientAlertNotification .btn-close {
+  filter: invert(1);
+  opacity: 0.7;
+}
+
+#patientAlertNotification:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Alert View Modal Styling */
+.alert-field {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f8f9fa;
+  transition: all 0.3s ease;
+}
+
+.alert-field:hover {
+  background-color: #e9ecef;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Specific styling for different alert types */
+#viewAlertAllergiesContainer {
+  background-color: #ffebee; /* Light red for allergies */
+  border-left: 4px solid #f44336;
+}
+
+#viewAlertDueDateContainer {
+  background-color: #e8f5e9; /* Light green for due dates */
+  border-left: 4px solid #4caf50;
+}
+
+#viewAlertIndicatorContainer {
+  background-color: #e3f2fd; /* Light blue for indicators */
+  border-left: 4px solid #2196f3;
+}
+
+#viewAlertSuppressionContainer {
+  background-color: #fff3e0; /* Light orange for suppression info */
+  border-left: 4px solid #ff9800;
+}
+
+/* Alert item styling in the offcanvas */
+.alert-item {
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.alert-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.alert-item.cdss {
+  border-left: 4px solid #2196f3; /* Blue for CDSS */
+}
+
+.alert-item.practice {
+  border-left: 4px solid #4caf50; /* Green for Practice */
+}
+
+.alert-item.registry {
+  border-left: 4px solid #ff9800; /* Orange for Registry */
+}
+
+/* Badge styling for alert categories */
+.badge.cdss {
+  background-color: #2196f3;
+}
+
+.badge.practice {
+  background-color: #4caf50;
+}
+
+.badge.registry {
+  background-color: #ff9800;
+}
+
+/* Suppressed alert styling */
+.alert-status.suppressed {
+  color: #f44336;
+  font-weight: 500;
+}
+
+.alert-status.active {
+  color: #4caf50;
+  font-weight: 500;
+}
+/* Ensure the alerts icon remains fixed size and draggable */
+#alertsIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+/* Badge styling for the alerts count */
+#alertsBadge {
+  font-size: 0.8rem;
+  padding: 0.3em 0.5em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #alertsIcon {
+    width: 50px;
+    height: 50px;
+  }
+  #alertsBadge {
+    font-size: 0.7rem;
+  }
+}
+
+/* Optional: Additional styling for the toast */
+#alertToast {
+  min-width: 250px;
+}
+/* A small box for the date-based color indicator */
+.box-indicator {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+
+/* Keyframes for fade-in/out animation */
+@keyframes colorIndicatorFade {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  15% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* Apply the animation */
+.color-indicator-anim {
+  animation: colorIndicatorFade 4s forwards ease-in-out;
+}
+
+/* Optionally override Bootstrap modal fade duration */
+.modal.fade .modal-dialog {
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+/* Notification Bell Styling */
+.notification-bell-btn {
+  background-color: transparent;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border: none;
+  padding: 0;
+  position: relative;
+}
+
+.notification-bell-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+.notification-bell-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#notificationIcon {
+  cursor: pointer;
+}
+
+#alertsBadge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  font-weight: bold;
+  background-color: #ff3b30;
+  color: white;
+  border-radius: 12px;
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(25%, -25%);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border: none;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(50%, -50%) scale(1.1);
+  }
+  100% {
+    transform: translate(50%, -50%) scale(1);
+  }
+}
+
+/* Alerts Canvas Styling */
+.alert-categories-nav {
+  border-bottom: 1px solid #dee2e6;
+  background-color: #f8f9fa;
+}
+
+.alert-categories-nav .nav-tabs {
+  border-bottom: none;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  scrollbar-width: none;
+}
+
+.alert-categories-nav .nav-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.alert-categories-nav .nav-link {
+  color: #495057;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 0;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+}
+
+.alert-categories-nav .nav-link .badge {
+  position: relative;
+  top: -1px;
+  font-size: 0.7rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 10px;
+}
+
+.alert-categories-nav .nav-link.active {
+  color: #007bff;
+  background-color: transparent;
+  font-weight: 600;
+}
+
+.alert-categories-nav .nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #007bff;
+}
+
+.alerts-container {
+  padding: 15px;
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+}
+
+.patient-alerts-group {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.patient-alerts-header {
+  background-color: #f0f8ff;
+  padding: 10px 15px;
+  border-bottom: 1px solid #e3f2fd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.patient-alerts-header h6 {
+  margin: 0;
+  font-weight: 600;
+  color: #0d47a1;
+  display: flex;
+  align-items: center;
+}
+
+.patient-alerts-header h6 i {
+  margin-right: 8px;
+}
+
+.patient-alerts-header .badge {
+  font-size: 0.7rem;
+  padding: 0.35em 0.65em;
+  border-radius: 10px;
+}
+
+.patient-alerts-body {
+  background-color: #fff;
+}
+
+.alert-item {
+  padding: 12px 15px;
+  border-bottom: 1px solid #f0f0f0;
+  position: relative;
+  transition: all 0.2s ease;
+  background-color: #fff;
+}
+
+.alert-item:last-child {
+  border-bottom: none;
+}
+
+.alert-item:hover {
+  background-color: #f9f9f9;
+}
+
+.alert-item.cdss {
+  border-left: 4px solid #2196f3;
+}
+
+.alert-item.practice {
+  border-left: 4px solid #ff9800;
+}
+
+.alert-item.registry {
+  border-left: 4px solid #4caf50;
+}
+
+.alert-item .alert-title {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.alert-item .alert-title .badge {
+  font-size: 0.7rem;
+  padding: 0.35em 0.65em;
+  border-radius: 10px;
+}
+
+.alert-item .badge.cdss {
+  background-color: #2196f3;
+  color: white;
+}
+
+.alert-item .badge.practice {
+  background-color: #ff9800;
+  color: white;
+}
+
+.alert-item .badge.registry {
+  background-color: #4caf50;
+  color: white;
+}
+
+.alert-item .alert-status {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+}
+
+.alert-item .alert-status.active {
+  color: #28a745;
+}
+
+.alert-item .alert-status.suppressed {
+  color: #6c757d;
+}
+
+.alert-item .alert-status i {
+  margin-right: 5px;
+}
+
+.alert-item .alert-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.alert-item .alert-actions button {
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.alert-item .alert-actions button i {
+  margin-right: 4px;
+}
+
+.alert-item .alert-actions .btn-view {
+  background-color: #2196f3;
+}
+
+.alert-item .alert-actions .btn-view:hover {
+  background-color: #1976d2;
+}
+
+.alert-item .alert-actions .btn-suppress {
+  background-color: #ff9800;
+}
+
+.alert-item .alert-actions .btn-suppress:hover {
+  background-color: #f57c00;
+}
+
+.alert-item .alert-actions .btn-unsuppress {
+  background-color: #4caf50;
+}
+
+.alert-item .alert-actions .btn-unsuppress:hover {
+  background-color: #388e3c;
+}
+
+.alert-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  color: #6c757d;
+}
+
+.alert-empty-state i {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  opacity: 0.5;
+}
+
+.alert-empty-state p {
+  font-size: 1rem;
+  margin: 0;
+}
+/* Optional: styling for panel header text */
+#alertsPanel h6 {
+  font-weight: bold;
+}
+
+/* Active state for interval buttons */
+.btn-outline-primary.active {
+  background-color: #0d6efd; /* Bootstrap primary color */
+  color: #fff;
+  border-color: #0d6efd;
+}
+
+/* Active state for the 'Never Remind' button (outline-danger) */
+.btn-outline-danger.active {
+  background-color: #dc3545; /* Bootstrap danger color */
+  color: #fff;
+  border-color: #dc3545;
+}
+/* Default style for suppressed buttons */
+.suppressed-btn {
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  /* You can set default colors if desired; for example: */
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #cccccc;
+}
+
+/* Active state for suppressed buttons */
+.suppressed-btn.active {
+  background-color: linear-gradient(135deg, var(--warning), var(--danger));
+  color: var(--text-color);
+  border-color: var(--danger);
+}
+
+/* Optional hover effect for active state */
+.suppressed-btn.active:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+.btn-group .btn.active {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  border-color: var(--primary-dark);
+  transition: all var(--transition-speed) ease;
+}
+.toggle-btn.active {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  border-color: var(--primary-dark);
+  transition: all var(--transition-speed) ease;
+}
+.search-btn:hover {
+  background: linear-gradient(135deg, var(--primary-light), var(--primary)) !important;
+  color: var(--text-color);
+  transition: all var(--transition-speed) ease-in-out;
+}
+@media (max-width: 1024px) {
+  #patientTable {
+    font-size: 0.9rem;
+  }
+  .table-responsive {
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  #patientTable thead {
+    display: none; /* Hide table headers on very small screens */
+  }
+
+  #patientTable tbody tr {
+    display: block;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  #patientTable tbody tr td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+  }
+
+  #patientTable tbody tr td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #333;
+    flex: 1;
+  }
+}
+
+.record-card {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+#nursingHistoryRecordsContainer {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-top: 1rem;
+  color: var(--text-color);
+}
+
+.patient-info-card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 25px;
+  box-shadow: 0 4px 12px rgba(102, 187, 105, 0.15);
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #333333;
+  font-size: 1rem;
+}
+
+.info-value {
+  color: #333333;
+  font-size: 1rem;
+}
+
+.record-header {
+  background: white;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px var(--shadow-light);
+  margin-bottom: 25px;
+}
+
+.record-header h4 {
+  margin: 0;
+  color: #333333;
+  font-weight: 600;
+}
+
+.record-header p {
+  margin: 5px 0 0;
+  color: #333333;
+}
+
+.record-subtitle {
+  font-size: 0.9rem;
+  color: #333333;
+  margin-top: 0.25rem;
+}
+
+.empty-record-message {
+  text-align: center;
+  font-style: italic;
+  color: #333333;
+  padding: 0.75rem;
+  border: 1px dashed var(--border-color);
+  border-radius: var(--border-radius);
+  margin-top: 1rem;
+}
+
+/* CUSTOM SCROLLBAR - Enhanced Pediatric Design */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0fee6;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #66bb69;
+  border-radius: 10px;
+  border: 2px solid #f0fee6;
+}
+
+/* Update specific components to use Poppins */
+.navbar-custom .nav-link,
+.navbar-custom .btn,
+.btn,
+.form-control,
+.modal-content,
+.card,
+.table,
+.pagination,
+.record-card,
+.record-header h4,
+.info-label,
+.info-value,
+.loader-text,
+footer {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Enhanced Table Styles */
+.table-container {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.table {
+  margin-bottom: 0;
+  width: 100%;
+  background: #fff;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table thead th {
+  background: #012d03;
+  color: white;
+  font-weight: 600;
+  padding: 15px;
+  font-size: 0.95rem;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(102, 187, 105, 0.05);
+  transform: translateY(-1px);
+}
+
+.table td {
+  padding: 12px 15px;
+  vertical-align: middle;
+  border-bottom: 1px solid #e9ecef;
+  color: #495057;
+  font-size: 0.9rem;
+}
+
+/* Action Buttons in Table */
+.table .btn-action {
+  padding: 8px 16px;
+  margin: 0 3px;
+  font-size: 0.9rem;
+  border-radius: 25px;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+
+.table .btn-view,
+.mar-table .btn-view,
+.reconciliation-table .btn-view,
+.nursing-history-table .btn-view {
+  background-color: #4e73df !important;
+  color: white !important;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.table .btn-edit,
+.mar-table .btn-edit,
+.reconciliation-table .btn-edit,
+.nursing-history-table .btn-edit {
+  background-color: #f6c23e !important;
+  color: #333333 !important;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.table .btn-delete,
+.mar-table .btn-delete,
+.reconciliation-table .btn-delete,
+.nursing-history-table .btn-delete {
+  background-color: #e74a3b !important;
+  color: white !important;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.table .btn-action:hover,
+.mar-table .btn-action:hover,
+.reconciliation-table .btn-action:hover,
+.nursing-history-table .btn-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  opacity: 0.9;
+}
+
+/* Empty State Message */
+.empty-record-message {
+  text-align: center;
+  padding: 30px;
+  color: #6c757d;
+  font-style: italic;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+/* Responsive Table Container */
+.table-responsive {
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Header Sort Icons */
+.table th.sortable {
+  cursor: pointer;
+  position: relative;
+}
+
+.table th.sortable:after {
+  content: '↕';
+  position: absolute;
+  right: 8px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Pagination Styling */
+.pagination {
+  margin-top: 20px;
+}
+
+.pagination .page-item .page-link {
+  color: #66bb69;
+  padding: 8px 16px;
+  border: 1px solid #dee2e6;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #66bb69;
+  border-color: #66bb69;
+  color: white;
+}
+
+.pagination .page-item .page-link:hover {
+  background-color: #f0fee6;
+  border-color: #66bb69;
+  color: #66bb69;
+}
+
+/* Welcome Screen Styles */
+.welcome-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.welcome-screen.fade-out {
+  opacity: 0;
+}
+
+.welcome-content {
+  text-align: center;
+  color: white;
+  transform: translateY(0);
+  transition: transform 0.5s ease-out;
+}
+
+.welcome-screen.fade-out .welcome-content {
+  transform: translateY(-20px);
+}
+
+.welcome-logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 2rem;
+  animation: pulse 2s infinite;
+}
+
+.welcome-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.5s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+.welcome-subtitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeInUp 0.5s ease-out forwards;
+  animation-delay: 0.8s;
+}
+
+.welcome-loader {
+  width: 200px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  margin: 0 auto;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+  animation-delay: 1.1s;
+}
+
+.loader-bar {
+  width: 40%;
+  height: 100%;
+  background: white;
+  border-radius: 2px;
+  animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(250%);
+  }
+}
+
+.mar-table .btn-view,
+.nursing-notes-table .btn-view {
+  background-color: #4e73df;
+  color: white !important;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.mar-table .btn-edit,
+.nursing-notes-table .btn-edit {
+  background-color: #f6c23e;
+  color: #333333 !important;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.mar-table .btn-delete,
+.nursing-notes-table .btn-delete {
+  background-color: #e74a3b;
+  color: white !important;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.mar-table .btn-action:hover,
+.nursing-notes-table .btn-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  opacity: 0.9;
+}
+
+/* Table header colors for MAR and Nursing Notes */
+.mar-table thead th,
+.nursing-notes-table thead th {
+  background: #e8f5e9;
+  color: #333333;
+  font-weight: 600;
+  padding: 15px;
+  font-size: 0.95rem;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Global Action Button Styles */
+.btn-action,
+.btn-view,
+.btn-edit,
+.btn-delete,
+.table .btn-action,
+.table .btn-view,
+.table .btn-edit,
+.table .btn-delete,
+.mar-table .btn-action,
+.mar-table .btn-view,
+.mar-table .btn-edit,
+.mar-table .btn-delete,
+.reconciliation-table .btn-action,
+.reconciliation-table .btn-view,
+.reconciliation-table .btn-edit,
+.reconciliation-table .btn-delete,
+.nursing-history-table .btn-action,
+.nursing-history-table .btn-view,
+.nursing-history-table .btn-edit,
+.nursing-history-table .btn-delete,
+.nursing-notes-table .btn-action,
+.nursing-notes-table .btn-view,
+.nursing-notes-table .btn-edit,
+.nursing-notes-table .btn-delete {
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  margin: 0 3px;
+  font-size: 0.9rem;
+}
+
+/* Action Buttons Styling */
+.action-btn {
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 0.25rem 0.5rem !important;
+  font-size: 0.875rem !important;
+  margin-right: 0.25rem !important;
+  transition: all 0.2s ease-in-out !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+.action-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15) !important;
+}
+
+.action-btn:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1) !important;
+}
+
+.action-btn i {
+  margin-right: 4px !important;
+}
+
+/* View Button Style */
+.btn-view {
+  background-color: #3498db !important;
+  color: white !important;
+}
+
+.btn-view:hover {
+  background-color: #2980b9 !important;
+}
+
+/* Edit Button Style */
+.btn-edit {
+  background-color: #2ecc71 !important;
+  color: white !important;
+}
+
+.btn-edit:hover {
+  background-color: #27ae60 !important;
+}
+
+/* Delete Button Style */
+.btn-delete {
+  background-color: #e74c3c !important;
+  color: white !important;
+}
+
+.btn-delete:hover {
+  background-color: #c0392b !important;
+}
+
+/* Delete Button Style */
+.btn-delete,
+.table .btn-delete,
+.mar-table .btn-delete,
+.reconciliation-table .btn-delete,
+.nursing-history-table .btn-delete,
+.nursing-notes-table .btn-delete,
+.modal-footer .btn-danger {
+  background-color: #e74a3b !important;
+  color: white !important;
+}
+
+/* Hover effect for all action buttons */
+.btn-action:hover,
+.btn-view:hover,
+.btn-edit:hover,
+.btn-delete:hover,
+.table .btn-action:hover,
+.mar-table .btn-action:hover,
+.reconciliation-table .btn-action:hover,
+.nursing-history-table .btn-action:hover,
+.nursing-notes-table .btn-action:hover,
+.modal-footer .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  opacity: 0.9;
+}
+
+/* Add Button Style */
+.btn-add,
+.btn-add-planning {
+  background-color: #4e73df !important;
+  color: white !important;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-add:hover,
+.btn-add-planning:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  opacity: 0.9;
+  background-color: #435cbe !important;
+}
+
+/* Search Button Style */
+.search-btn {
+  background-color: #4e73df !important;
+  color: white !important;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.search-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  opacity: 0.9;
+  background-color: #435cbe !important;
+}
+
+/* Landing Page Styles */
+.landing-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%);
+  z-index: 9998;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.landing-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.landing-logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 2rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+.landing-title {
+  font-size: 3rem;
+  color: #012d03;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.landing-subtitle {
+  font-size: 1.2rem;
+  color: #333333;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards 0.3s;
+}
+
+.landing-features {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards 0.6s;
+}
+
+.feature-item {
+  flex: 1;
+  max-width: 250px;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(102, 187, 105, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  color: #66bb69;
+  margin-bottom: 1rem;
+}
+
+.feature-title {
+  font-size: 1.2rem;
+  color: #012d03;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.feature-text {
+  font-size: 0.9rem;
+  color: #666666;
+}
+
+.landing-cta {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards 0.9s;
+}
+
+.btn-get-started {
+  background: #66bb69;
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-get-started:hover {
+  background: #5aa85d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 187, 105, 0.3);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.landing-page.fade-out {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease-out;
+}
+
+/* Carousel Styles */
+#landingCarousel {
+    max-height: 600px;
+    margin-bottom: 3rem;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+#landingCarousel .carousel-item {
+    height: 500px;
+}
+
+#landingCarousel .carousel-item img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+#landingCarousel .carousel-caption {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    padding: 2rem;
+    bottom: 2rem;
+}
+
+#landingCarousel .carousel-caption h3 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+#landingCarousel .carousel-caption p {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn-success {
+    background-color: #66bb69;
+    border-color: #66bb69;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+}
+
+@media (max-width: 768px) {
+    #landingCarousel .carousel-item {
+        height: 300px;
+    }
+
+    #landingCarousel .carousel-caption {
+        position: relative;
+        background: #66bb69;
+        border-radius: 0 0 15px 15px;
+        padding: 1.5rem;
+        bottom: 0;
+    }
+
+    #landingCarousel .carousel-caption h3 {
+        font-size: 1.5rem;
+    }
+
+    #landingCarousel .carousel-caption p {
+        font-size: 1rem;
+    }
+
+    .btn-success {
+        padding: 0.5rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Vision & Mission Cards */
+.vision-mission-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.vision-mission-card:hover {
+    transform: translateY(-5px);
+}
+
+.vision-mission-card h3 {
+    color: #388E3C;
+    font-weight: 600;
+}
+
+/* Team Cards */
+.team-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    height: 100%;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+}
+
+.team-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.team-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.team-info h4 {
+    color: #388E3C;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.team-info p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #landingCarousel .carousel-item {
+        height: 300px;
+    }
+
+    .team-img {
+        height: 250px;
+    }
+
+    .vision-mission-card {
+        margin-bottom: 20px;
+    }
+}
+

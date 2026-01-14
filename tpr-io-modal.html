@@ -1,0 +1,75 @@
+<!-- TPR/I&O Record Modal -->
+<div class="modal fade" id="tprIoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content animate__animated animate__zoomIn">
+      <div class="modal-header">
+        <h5 class="modal-title">TPR / I&O Record</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="tprIoIndex" />
+        
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="tprIoDate" class="form-label">Date</label>
+            <input type="date" class="form-control" id="tprIoDate" />
+          </div>
+          <div class="col-md-6">
+            <label for="tprIoTime" class="form-label">Time</label>
+            <input type="time" class="form-control" id="tprIoTime" />
+          </div>
+        </div>
+        
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="tprIoTemp" class="form-label">Temperature (°C)</label>
+            <input type="number" step="0.1" class="form-control" id="tprIoTemp" placeholder="36.5-37.5" />
+          </div>
+          <div class="col-md-6">
+            <label for="tprIoPulse" class="form-label">Pulse Rate (BPM)</label>
+            <input type="number" class="form-control" id="tprIoPulse" placeholder="60-100" />
+          </div>
+        </div>
+        
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="tprIoRespRate" class="form-label">Resp. Rate</label>
+            <input type="number" class="form-control" id="tprIoRespRate" placeholder="12-20" />
+          </div>
+          <div class="col-md-6">
+            <label for="tprIoBp" class="form-label">Blood Pressure</label>
+            <input type="text" class="form-control" id="tprIoBp" placeholder="120/80" />
+          </div>
+        </div>
+        
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="tprIoO2Sat" class="form-label">O2 Saturation (%)</label>
+            <input type="number" class="form-control" id="tprIoO2Sat" placeholder="95-100" />
+          </div>
+        </div>
+        
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="tprIoIntake" class="form-label">Intake (ml)</label>
+            <input type="number" class="form-control" id="tprIoIntake" placeholder="0" />
+          </div>
+          <div class="col-md-6">
+            <label for="tprIoOutput" class="form-label">Output (ml)</label>
+            <input type="number" class="form-control" id="tprIoOutput" placeholder="0" />
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <label for="tprIoNotes" class="form-label">Additional Notes</label>
+          <textarea class="form-control" id="tprIoNotes" rows="3" placeholder="Enter any additional observations or notes"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="tprIoSaveBtn" type="button" class="btn btn-success" onclick="saveTprIoRecord()">Save</button>
+        <button id="tprIoDeleteBtn" type="button" class="btn btn-danger" onclick="deleteTprIoRecord()">Delete</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

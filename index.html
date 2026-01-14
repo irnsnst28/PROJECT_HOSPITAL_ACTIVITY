@@ -1,0 +1,2510 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tamaraw Medical Center</title>
+        <!-- Bootstrap CSS & Icons -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Favicon (optional) -->
+        <link rel="icon" href="logo.png" type="image/x-icon" />
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="./assets/styles.css" />
+        <link rel="stylesheet" href="./assets/manage-patients.css" />
+        <!-- Dexie Library (for IndexedDB) -->
+        <script src="https://unpkg.com/dexie@3/dist/dexie.js"></script>
+        <!-- Add Font Awesome for icons in the head section -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <!-- Welcome Screen Script -->
+        <script src="./assets/js/welcome.js"></script>
+    </head>
+    <body class="d-flex flex-column min-vh-100">
+      <!-- Welcome Screen -->
+      <div id="welcomeScreen" class="welcome-screen">
+        <div class="welcome-content">
+          <div class="logo-container">
+            <img src="logo.png" alt="Logo" class="logo">
+          </div>
+          <h1 class="welcome-title">Welcome to</h1>
+          <p class="welcome-subtitle">Tamaraw Medical Center</p>
+          <div class="loader"></div>
+        </div>
+      </div>
+
+<!-- =========================
+     LANDING PAGE
+========================== -->
+<div id="landingPage" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow-y: auto;
+background: #FFFFFF;">
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #388E3C;">
+        <div class="container-fluid">
+            <!-- Logo and Hospital Name -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="logo.png" alt="Hospital Logo" style="width: 50px; height: 50px; margin-right: 10px;">
+                <span style="color: white; font-weight: 700; font-size: 1.5rem;">TAMARAW MEDICAL CENTER</span>
+            </a>
+
+            <!-- Login Button -->
+            <div class="d-flex">
+                <button onclick="showLoginPage()" class="btn btn-outline-light px-4" style="border-radius: 20px;">
+                    <i class="bi bi-person-fill me-2"></i>Login
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Add margin-top to account for fixed navbar -->
+    <div class="container-fluid p-0" style="margin-top: 60px;">
+       <div class="text-center mb-5">
+           <!-- Removed Electronic Health System text -->
+       </div>
+
+    <!-- Carousel Section - Full Screen -->
+    <div id="landingCarousel" class="carousel slide" data-bs-ride="carousel" style="margin-top: -60px; height: 100vh; width: 100%;">
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#landingCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#landingCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#landingCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <!-- Carousel Items -->
+        <div class="carousel-inner" style="height: 100%;">
+            <!-- Carousel Slide 1: Hospital Name -->
+            <div class="carousel-item active" style="height: 100%;">
+                <img src="back.jpg" class="d-block w-100" alt="Hospital Exterior" style="height: 100%; object-fit: cover;">
+                <div class="carousel-caption" style="background: rgba(0, 0, 0, 0.4); padding: 2rem; border-radius: 15px;">
+                    <h1 style="font-size: 4.5rem; font-weight: 700; margin-bottom: 1.5rem;">TAMARAW MEDICAL CENTER</h1>
+                    <p class="lead" style="font-size: 2rem; margin-bottom: 2rem;">Excellence in Healthcare</p>
+                    <a href="#" onclick="showLoginPage()" class="btn btn-success btn-lg px-5 py-3" style="font-size: 1.2rem; border-radius: 50px;">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>Login to System
+                    </a>
+                </div>
+            </div>
+            <!-- Carousel Slide 2: Vision -->
+            <div class="carousel-item" style="height: 100%;">
+                <img src="1.png" class="d-block w-100" alt="Hospital Vision" style="height: 100%; object-fit: cover;">
+                <div class="carousel-caption" style="background: rgba(0, 0, 0, 0.4); padding: 2rem; border-radius: 15px;">
+                    <h2 style="font-size: 4rem; font-weight: 600; margin-bottom: 1.5rem;">Our Vision</h2>
+                    <p style="font-size: 1.8rem; margin-bottom: 2rem;">To be the leading healthcare provider in the region, delivering exceptional medical care and innovative solutions for our community's well-being.</p>
+                    <a href="#teamSection" class="btn btn-success btn-lg px-5 py-3" style="font-size: 1.2rem; border-radius: 50px;">
+                        <i class="bi bi-people-fill me-2"></i>Meet Our Team
+                    </a>
+                </div>
+            </div>
+            <!-- Carousel Slide 3: Mission -->
+            <div class="carousel-item" style="height: 100%;">
+                <img src="IMG_3704.JPG" class="d-block w-100" alt="Hospital Mission" style="height: 100%; object-fit: cover;">
+                <div class="carousel-caption" style="background: rgba(0, 0, 0, 0.4); padding: 2rem; border-radius: 15px;">
+                    <h2 style="font-size: 4rem; font-weight: 600; margin-bottom: 1.5rem;">Our Mission</h2>
+                    <p style="font-size: 1.8rem; margin-bottom: 2rem;">To provide compassionate, high-quality healthcare services through advanced technology, skilled professionals, and patient-centered care.</p>
+                    <a href="#" onclick="showLoginPage()" class="btn btn-success btn-lg px-5 py-3" style="font-size: 1.2rem; border-radius: 50px;">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>Login to System
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#landingCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true" style="width: 3rem; height: 3rem;"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#landingCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true" style="width: 3rem; height: 3rem;"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+
+       <!-- Team Members Section (11 Members) -->
+       <div id="teamSection" class="container-fluid py-5">
+           <div class="row">
+               <div class="col-lg-6">
+                   <h1 class="display-4 mb-4 text-center" style="color: #388E3C; font-weight: 700;">BSN 201 / GROUP 1</h1>
+                   <div class="text-center">
+                       <p class="lead mb-5" style="font-size: 1.1rem; line-height: 1.8;">
+                           Members:<br>
+                           Acosta, Jerome A.<br>
+                           Acuzar, Micaela Marie V.<br>
+                           Adriano, Phoebe Lindsay V.<br>
+                           Alinsod, Abigail R.<br>
+                           Argonza, Alexander Jr. D.<br>
+                           Bagnes, Kathleen Louise S.<br>
+                           Balo, Brylle James T.<br>
+                           Bautista, Ariane Bernadette M.<br>
+                           Canonizado, Brianna Mie C.<br>
+                           Castro, Shan Ericka T.<br>
+                           Caturan, Jhonwen
+                       </p>
+                   </div>
+               </div>
+               <div class="col-lg-6">
+                   <!-- Single Image Display -->
+                   <div class="text-center">
+                       <img src="2.jpg" alt="Medical Staff" class="img-fluid rounded shadow-sm" style="width: 100%; height: auto; object-fit: cover; margin-top: 100px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px;">
+                   </div>
+               </div>
+           </div>
+       </div>
+
+      <!-- Footer Section -->
+<div class="py-4 mt-5" style="background-color: #388e3c; color: white;">
+    <div class="container">
+      <!-- Row for Contact Info (Left) and Social Icons (Right) -->
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <p class="mb-2">
+            <i class="bi bi-geo-alt-fill me-2"></i>
+            123 Medical Center Drive, City
+          </p>
+          <p class="mb-2">
+            <i class="bi bi-telephone-fill me-2"></i>
+            (123) 456-7890
+          </p>
+          <p class="mb-2">
+            <i class="bi bi-envelope-fill me-2"></i>
+            info@tamarawmedical.com
+          </p>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end">
+          <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-5"></i></a>
+          <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-5"></i></a>
+          <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-5"></i></a>
+          <a href="#" class="text-white"><i class="bi bi-linkedin fs-5"></i></a>
+        </div>
+      </div>
+
+      <!-- Row for Copyright -->
+      <div class="row mt-3">
+        <div class="col text-center">
+          <p class="mb-0">© 2024 Tamaraw Medical Center. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+      <!-- =========================
+           LOGIN PAGE
+      ========================== -->
+      <div id="loginPage"
+           style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                  background: linear-gradient(135deg, rgba(255, 240, 240, 0.3), rgba(255, 255, 255, 0.9)),
+                  url('back.jpg') no-repeat center center / cover;
+                  display: flex; align-items: center; justify-content: center; z-index: 10000;">
+
+          <div id="loginBox"
+               style="background: rgba(255, 255, 255, 0.95); padding: 2.5rem; border-radius: 20px;
+                      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+                      text-align: center; width: 380px; border: 1px solid rgba(255, 240, 240, 0.5);
+                      backdrop-filter: blur(10px);">
+
+              <div style="margin-bottom: 2rem;">
+                  <img src="logoo.png" alt="Nurse Icon"
+                       style="width: 60px; height: 60px; margin-bottom: 1rem;">
+                  <h2 style="font-size: 28px; color: #388E3C;
+                           font-weight: 600; letter-spacing: 0.5px; margin: 0;">
+                      Hi Tam Nurse
+                  </h2>
+                  <p style="color: #388E3C; font-size: 0.9rem; margin-top: 0.5rem;">
+                      Electronic Health System
+                  </p>
+              </div>
+
+              <form id="loginForm">
+                  <div class="mb-4">
+                      <div class="input-group" style="position: relative;">
+                          <span class="input-group-text"
+                                style="position: absolute; left: 0; top: 0; height: 100%;
+                                       background: transparent; border: none; z-index: 1;">
+                              <i class="bi bi-envelope" style="color: #388E3C;"></i>
+                          </span>
+                          <input type="email" class="form-control" id="loginEmail"
+                                 placeholder="Enter email" required
+                                 style="padding: 12px 12px 12px 35px; border-radius: 10px;
+                                        border: 1px solid #388E3C; background: #FFF8F8;
+                                        box-shadow: none;">
+                      </div>
+                  </div>
+                  <div class="mb-4">
+                      <div class="input-group" style="position: relative;">
+                          <span class="input-group-text"
+                                style="position: absolute; left: 0; top: 0; height: 100%;
+                                       background: transparent; border: none; z-index: 1;">
+                              <i class="bi bi-lock" style="color: #388E3C;"></i>
+                          </span>
+                          <input type="password" class="form-control" id="loginPassword"
+                                 placeholder="Enter password" required
+                                 style="padding: 12px 12px 12px 35px; border-radius: 10px;
+                                        border: 1px solid #388E3C; background: #FFF8F8;
+                                        box-shadow: none;">
+                      </div>
+                  </div>
+                  <button type="submit" class="btn w-100 mb-3"
+                          style="background: #388E3C;
+                                 color: white; font-weight: 500; padding: 12px;
+                                 border-radius: 10px; border: none;
+                                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);">
+                      Sign In
+                  </button>
+                  <div style="margin-top: 1.5rem;">
+                      <a href="#" style="color: #388E3C; text-decoration: none; font-size: 0.9rem;">
+                          Forgot Password?
+                      </a>
+                  </div>
+              </form>
+          </div>
+      </div>
+
+      <!-- =========================
+           LOADING SCREEN
+      ========================== -->
+      <div id="loadingScreen"
+          style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                 background: rgba(255,255,255,0.8); z-index: 9999; flex-direction: column;
+                 justify-content: center; align-items: center; text-align: center;">
+
+          <div class="loader"
+              style="border: 8px solid rgba(165, 214, 167, 0.3); border-top: 8px solid #89b1db;
+                     border-radius: 50%; width: 80px; height: 80px;
+                     animation: spin 1s linear infinite;">
+          </div>
+
+          <div class="loader-text"
+              style="margin-top: 20px; font-size: 1.4rem; font-weight: bold; color: #89b1db;
+                     animation: fadeIn 1s ease-in-out;">
+              Loading...
+          </div>
+      </div>
+
+        <!-- =========================
+         MAIN CONTENT (Hidden until login)
+    ========================== -->
+        <div id="mainContent" style="display: none !important; min-height: 100vh; position: relative; padding-bottom: 160px;">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-custom" style="background: linear-gradient(135deg, var(--primary), var(--primary-light));">
+                <div class="container-fluid">
+                    <a class="navbar-brand d-flex align-items-center" href="#" style="color: white; font-weight: 700; font-size: 1.5rem; font-family: 'Poppins', sans-serif;">
+                        <img src="logo.png" alt="Hospital Logo" class="header-logo" style="max-height: 80px; margin-right: 10px;" />
+                        TAMARAW MEDICAL CENTER
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="mainNavbar">
+                        <div class="ms-auto d-flex align-items-center">
+                            <!-- Notification Icon with Badge -->
+                            <button id="notificationIcon" class="notification-bell-btn me-3" data-bs-toggle="offcanvas" data-bs-target="#alertsOffcanvas" aria-controls="alertsOffcanvas">
+                                <i class="bi bi-bell-fill fs-3 text-white"></i>
+                                <span id="alertsBadge" style="display: none;">0</span>
+                            </button>
+                            <!-- User Sidebar Button -->
+                            <button class="btn btn-outline-light" data-bs-toggle="offcanvas" data-bs-target="#userSidebar">
+                                <i class="bi bi-person-circle fs-3"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Search & Add Patient Section -->
+            <div class="container mt-3">
+                <div class="card" style="background-color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <div class="card-body d-flex align-items-center justify-content-between flex-wrap">
+                        <div class="d-flex align-items-center flex-wrap search-container">
+                            <label class="me-2 fw-bold" for="searchFilter" style="min-width: 100px;">Search by:</label>
+                            <select id="searchFilter" class="form-select me-2 mb-2" style="width: 150px; background-color: white;">
+                                <option value="id">Patient ID</option>
+                                <option value="name">Name</option>
+                            </select>
+                            <input type="text" id="searchInput" class="form-control me-2 mb-2 search-input" placeholder="Search patients..." style="min-width: 200px; background-color: white;" />
+                            <button class="btn btn-secondary mb-2" onclick="filterPatients()">Search</button>
+                        </div>
+                        <div>
+                            <button class="btn btn-info me-2" data-bs-toggle="modal" data-bs-target="#addPatientModal">
+                                <i class="bi bi-person-plus-fill me-1"></i> Add Patient
+                            </button>
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#managePatientModal">
+                                <i class="bi bi-people-fill me-1"></i> Manage Patients
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alerts Offcanvas -->
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="alertsOffcanvas" aria-labelledby="alertsOffcanvasLabel">
+                <div class="offcanvas-header bg-primary text-white">
+                    <h5 id="alertsOffcanvasLabel" class="d-flex align-items-center">
+                        <i class="bi bi-bell-fill me-2"></i> Alerts
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body p-0">
+                    <div class="alert-categories-nav">
+                        <div class="nav nav-tabs nav-fill" id="alertCategoriesTabs" role="tablist">
+                            <button class="nav-link active" id="all-alerts-tab" data-bs-toggle="tab" data-bs-target="#all-alerts" type="button" role="tab" aria-selected="true">All</button>
+                            <button class="nav-link" id="cdss-alerts-tab" data-bs-toggle="tab" data-bs-target="#cdss-alerts" type="button" role="tab" aria-selected="false">CDSS</button>
+                            <button class="nav-link" id="practice-alerts-tab" data-bs-toggle="tab" data-bs-target="#practice-alerts" type="button" role="tab" aria-selected="false">Practice</button>
+                            <button class="nav-link" id="registry-alerts-tab" data-bs-toggle="tab" data-bs-target="#registry-alerts" type="button" role="tab" aria-selected="false">Registry</button>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="alertCategoriesContent">
+                        <div class="tab-pane fade show active" id="all-alerts" role="tabpanel">
+                            <div id="alertsOffcanvasContent" class="alerts-container">
+                                <!-- Active alerts will be loaded here -->
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="cdss-alerts" role="tabpanel">
+                            <div id="cdssAlertsContent" class="alerts-container">
+                                <!-- CDSS alerts will be loaded here -->
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="practice-alerts" role="tabpanel">
+                            <div id="practiceAlertsContent" class="alerts-container">
+                                <!-- Practice alerts will be loaded here -->
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="registry-alerts" role="tabpanel">
+                            <div id="registryAlertsContent" class="alerts-container">
+                                <!-- Registry alerts will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rest of your mainContent goes here -->
+
+            <!-- Modal for Alert History -->
+            <div class="modal fade" id="alertHistoryModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title">CDSS Alert History</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="alertHistoryContent">
+                            <!-- Alert history will be injected here -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Centered Alert Modal for CDSS Alerts -->
+            <div class="modal fade" id="centeredAlertModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-body text-center">
+                            <i class="bi bi-exclamation-triangle-fill text-warning fs-2"></i>
+                            <p id="centeredAlertMessage" class="mt-2"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Offcanvas Sidebar -->
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="userSidebar" aria-labelledby="userSidebarLabel">
+                <div class="offcanvas-header bg-light">
+                    <h5 class="offcanvas-title" id="userSidebarLabel">Hi User!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body bg-light">
+                    <p>Welcome to your dashboard.</p>
+                    <hr />
+                    <div class="mb-3">
+                        <button class="btn btn-warning w-100 mb-3" type="button" onclick="resetDatabase()">
+                            <i class="bi bi-database-fill-gear me-2"></i>Reset Database
+                        </button>
+                        <small class="text-muted d-block mb-3">Use this option if you're experiencing database issues. This will clear all data.</small>
+                    </div>
+                    <button class="btn btn-danger w-100" type="button" onclick="logout()">
+                        <i class="bi bi-box-arrow-right me-2"></i>Logout
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <main class="container my-4">
+                <div class="table-responsive shadow-sm rounded" style="overflow-x: auto; border-radius: 8px; background-color: #ffffff; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);">
+                    <table class="table table-striped table-bordered" id="patientTable" style="border-collapse: collapse; min-width: 800px; font-size: 0.95rem;">
+                        <thead class="table-dark">
+                            <tr>
+                                <th style="white-space: nowrap; padding: 10px;">Patient ID</th>
+                                <th style="white-space: nowrap; padding: 10px;">Name</th>
+                                <th style="white-space: nowrap; padding: 10px;">Birthdate</th>
+                                <th style="white-space: nowrap; padding: 10px;">Gender</th>
+                                <th style="white-space: nowrap; padding: 10px;">Age</th>
+                                <th style="white-space: nowrap; padding: 10px;">Admission No.</th>
+                                <th style="white-space: nowrap; padding: 10px;">Date Time</th>
+                                <th style="white-space: nowrap; padding: 10px;">Room No.</th>
+                                <th style="white-space: nowrap; padding: 10px;">Station</th>
+                                <th style="white-space: nowrap; padding: 10px;">Status</th>
+                                <th style="white-space: nowrap; padding: 10px;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="patientTableBody">
+                            <!-- Patient records injected by script -->
+                        </tbody>
+                    </table>
+                    <div id="emptyPatientMessage" class="empty-table-message text-center py-3" style="display: none; color: #777; font-style: italic;">
+                        No patients found. Please add a new patient.
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-container my-3 d-flex justify-content-center">
+                    <nav>
+                        <ul class="pagination" id="paginationUl">
+                            <!-- Pagination items injected by script -->
+                        </ul>
+                    </nav>
+                </div>
+            </main>
+
+            <!-- Footer -->
+            <footer style="background: #388e3c; position: absolute; bottom: 0; width: 100%;">
+                <div class="container py-3 text-center">
+                    <p style="color: white; font-weight: 600; margin-bottom: 8px;">&copy; 2025 TAMARAW MEDICAL CENTER. All rights reserved.</p>
+                    <p>
+                        <a href="#" style="color: white; text-decoration: none; font-weight: 600; margin: 0 10px;">Privacy Policy</a>
+                        <span style="color: white;">|</span>
+                        <a href="#" style="color: white; text-decoration: none; font-weight: 600; margin: 0 10px;">Terms of Service</a>
+                        <span style="color: white;">|</span>
+                        <a href="#" style="color: white; text-decoration: none; font-weight: 600; margin: 0 10px;">Contact Us</a>
+                    </p>
+                </div>
+            </footer>
+        </div>
+
+        <!-- =========================
+         MODALS
+    ========================== -->
+        <!-- Add Patient Modal -->
+        <div class="modal fade" id="addPatientModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content animate__animated animate__zoomIn">
+                    <form id="addPatientForm">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Patient</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <!-- Patient Form Fields -->
+                                <div class="col-md-6 mb-2">
+                                    <label for="pName">Name</label>
+                                    <input type="text" class="form-control" id="pName" placeholder="Enter Name" required />
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="pBirthdate">Birthdate</label>
+                                    <input type="date" class="form-control" id="pBirthdate" required />
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="pGender">Gender</label>
+                                    <select class="form-select" id="pGender" required>
+                                        <option value="">-- Select Gender --</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="pAge">Age</label>
+                                    <input type="number" class="form-control" id="pAge" placeholder="Enter Age" required />
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="pAdmissionNo">Admission No.</label>
+                                    <input type="text" class="form-control" id="pAdmissionNo" placeholder="Enter Admission Number" required />
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="pDateTime">Date & Time</label>
+                                    <input type="datetime-local" class="form-control" id="pDateTime" required />
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="pRoomNo">Room No.</label>
+                                    <input type="text" class="form-control" id="pRoomNo" placeholder="Enter Room Number" required />
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="pStation">Station</label>
+                                    <input type="text" class="form-control" id="pStation" placeholder="Enter Station" required />
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="pStatus">Status</label>
+                                    <input type="text" class="form-control" id="pStatus" placeholder="Enter Status" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save Patient</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Patient Modal -->
+        <div class="modal fade" id="editPatientModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content animate__animated animate__zoomIn">
+                    <form id="editPatientForm">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Patient</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" id="editPatientId" />
+                            <div class="row">
+                                <!-- Edit Patient Fields -->
+                                <div class="col-md-6 mb-2">
+                                    <label for="editFullName">Name</label>
+                                    <input type="text" class="form-control" id="editFullName" required />
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="editBirthdate">Birthdate</label>
+                                    <input type="date" class="form-control" id="editBirthdate" required />
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="editGender">Gender</label>
+                                    <select class="form-select" id="editGender" required>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="editAge">Age</label>
+                                    <input type="number" class="form-control" id="editAge" required />
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="editAdmissionNo">Admission No.</label>
+                                    <input type="text" class="form-control" id="editAdmissionNo" required />
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="editDateTime">Date & Time</label>
+                                    <input type="datetime-local" class="form-control" id="editDateTime" required />
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="editRoomNo">Room No.</label>
+                                    <input type="text" class="form-control" id="editRoomNo" required />
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="editStation">Station</label>
+                                    <input type="text" class="form-control" id="editStation" required />
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="editStatus">Status</label>
+                                    <input type="text" class="form-control" id="editStatus" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Update Patient</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Patient Modal -->
+        <div class="modal fade" id="viewPatientModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #e0e0e0; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                        <h5 class="modal-title" style="color: #333;">Patient Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body" style="color: #444;">
+                        <p><strong>ID:</strong> <span id="viewPatientId" style="color: #666;"></span></p>
+                        <p><strong>Name:</strong> <span id="viewPatientName" style="color: #666;"></span></p>
+                        <p><strong>Birthdate:</strong> <span id="viewPatientBirthdate" style="color: #666;"></span></p>
+                        <p><strong>Gender:</strong> <span id="viewPatientGender" style="color: #666;"></span></p>
+                        <p><strong>Age:</strong> <span id="viewPatientAge" style="color: #666;"></span></p>
+
+                        <!-- Tabs for Sub-Records -->
+                        <ul class="nav nav-tabs" id="patientTabs" style="border-bottom: 2px solid #ddd;">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-bs-toggle="tab" href="#patientInfoTab">Patient Info</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#nursingHistoryTab">Nursing Health History</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#medicalRecordsTab">Medical Records</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#medicationTab">Medication</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#diagnosisTab">Doctor's Progress Notes</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#tprIoTab">TPR/I&O</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#planningTab">Discharge Plan</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#reconciliationTab">Reconciliation</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#marTab">MAR</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#nursingNotesTab">Nursing Notes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#payBillsTab">Pay Bills</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#appointmentTab">Appointment</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#cdssTab">CDSS</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content mt-3">
+<!-- Patient Info Tab with Elegant Card Layout -->
+<div class="tab-pane fade show active" id="patientInfoTab">
+    <div class="record-card">
+      <div class="record-header d-flex align-items-center mb-3">
+        <i class="bi bi-person-circle fs-3 me-2"></i>
+        <div>
+          <h4>Patient Information</h4>
+          <p class="record-subtitle">View basic patient details.</p>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <button class="btn btn-info" onclick="openPatientInfoModal()">
+          <i class="bi bi-pencil-square me-1"></i>Edit Extra Info
+        </button>
+      </div>
+
+      <div class="patient-info-card">
+        <div class="info-row">
+          <span class="info-label">Name:</span>
+          <span class="info-value" id="pi_name">—</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Birthday:</span>
+          <span class="info-value" id="pi_birthday">—</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Age:</span>
+          <span class="info-value" id="pi_age">—</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Weight:</span>
+          <span class="info-value" id="pi_weight">—</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Height:</span>
+          <span class="info-value" id="pi_height">—</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Ethnicity:</span>
+          <span class="info-value" id="pi_ethnicity">—</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Contact:</span>
+          <span class="info-value" id="pi_contact">—</span>
+        </div>
+      </div>
+
+      <!-- Empty Patient Info Message -->
+      <div id="emptyPatientInfo" class="empty-record-message text-muted" style="display: none;">
+        No patient information available.
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+<!-- Nursing History Tab -->
+<div class="tab-pane fade" id="nursingHistoryTab">
+    <div class="record-card">
+        <div class="record-header d-flex align-items-center mb-3">
+            <i class="bi bi-clock-history fs-3 me-2"></i>
+            <div>
+                <h4>Nursing History</h4>
+                <p class="record-subtitle">Review patient nursing history entries.</p>
+            </div>
+        </div>
+
+        <div class="mb-4 d-flex">
+            <button class="btn btn-success rounded-pill px-4 me-2" onclick="openNursingHistoryModal()">
+                <i class="bi bi-pencil-square me-2"></i>EDIT NURSING HISTORY
+            </button>
+            <button class="btn btn-danger rounded-pill px-4" onclick="clearNursingHistory()">
+                <i class="bi bi-trash me-2"></i>CLEAR HISTORY
+            </button>
+        </div>
+
+        <div class="nursing-history-card" style="font-size: 1.1rem;">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td width="30%" class="bg-light">
+                            <strong>Present Illness:</strong>
+                        </td>
+                        <td width="70%">
+                            <div id="nh_present" class="nursing-history-text">—</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="30%" class="bg-light">
+                            <strong>Past Illness:</strong>
+                        </td>
+                        <td width="70%">
+                            <div id="nh_past" class="nursing-history-text">—</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="30%" class="bg-light">
+                            <strong>Family History:</strong>
+                        </td>
+                        <td width="70%">
+                            <div id="nh_family" class="nursing-history-text">—</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="30%" class="bg-light">
+                            <strong>Allergies:</strong>
+                        </td>
+                        <td width="70%">
+                            <div id="nh_allergies" class="nursing-history-text">—</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="30%" class="bg-light">
+                            <strong>Past Immunization:</strong>
+                        </td>
+                        <td width="70%">
+                            <div id="nh_immunization" class="nursing-history-text">—</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Empty Nursing History Message -->
+        <div id="emptyNursingHistory" class="empty-record-message text-muted" style="display: none;">
+            No nursing history information available.
+        </div>
+    </div>
+</div>
+
+
+
+
+                            <div class="tab-pane fade" id="medicalRecordsTab">
+                                <div class="record-card">
+                                    <div class="record-header d-flex align-items-center">
+                                        <i class="bi bi-file-medical-fill fs-3 me-2"></i>
+                                        <div>
+                                            <h4>Medical Records</h4>
+                                            <p class="record-subtitle">Manage patient test records.</p>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group mb-2" id="medicalRecordTabs">
+                                        <button class="btn btn-outline-primary" onclick="openTestModal('Imaging', this)">Imaging</button>
+                                        <button class="btn btn-outline-primary" onclick="openTestModal('Laboratory', this)">Laboratory</button>
+                                        <button class="btn btn-outline-primary" onclick="openTestModal('Histopath', this)">Histopath</button>
+                                        <button class="btn btn-outline-primary" onclick="openTestModal('Microbiology', this)">Microbiology</button>
+                                        <button class="btn btn-outline-primary" onclick="openTestModal('Physical Assessment', this)">Physical Assessment</button>
+                                    </div>
+                                    <h4 id="testRecordsHeader" style="margin-bottom: 1rem;"></h4>
+                                    <div id="testRecordsTable" style="display: none;">
+                                        <button class="btn btn-info" onclick="addTestRecord()">Add Data</button>
+                                        <div class="table-responsive modal-table-scroll">
+                                            <table class="table table-bordered">
+                                                <thead class="table-dark">
+                                                    <tr>
+                                                        <th>Test Type</th>
+                                                        <th>Test Date</th>
+                                                        <th>Result</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="testRecordsBody">
+                                                    <!-- Test records injected by script -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div id="emptyTestRecords" class="empty-record-message" style="display: none;">
+                                            No records found.
+                                        </div>
+                                    </div>
+                                    <input type="file" id="singleTestImage" style="display: none;" accept="image/*" multiple />
+                                </div>
+                            </div>
+                            <!-- Medication Tab -->
+                            <div class="tab-pane fade" id="medicationTab">
+                                <div class="record-card">
+                                    <div class="record-header d-flex align-items-center">
+                                        <i class="bi bi-capsule fs-3 me-2"></i>
+                                        <div>
+                                            <h4>Medication</h4>
+                                            <p class="record-subtitle">Track patient prescriptions.</p>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-info" onclick="openMedicationForm()">Add Medication</button>
+                                    <div class="table-responsive modal-table-scroll">
+                                        <table class="table table-bordered">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Medication</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="medicationTableBody">
+                                                <!-- Medication records injected by script -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="emptyMedication" class="empty-record-message" style="display: none;">
+                                        No medication records.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Diagnosis Tab -->
+                            <div class="tab-pane fade" id="diagnosisTab">
+                                <div class="record-card">
+                                    <div class="record-header d-flex align-items-center">
+                                        <i class="bi bi-clipboard2-pulse fs-3 me-2"></i>
+                                        <div>
+                                            <h4>Doctor's Progress Notes</h4>
+                                            <p class="record-subtitle">Record patient diagnoses.</p>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-info" onclick="openDiagnosisForm()">Add Doctor's Progress Notes</button>
+                                    <div class="table-responsive modal-table-scroll">
+                                        <table class="table table-bordered">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Doctor's Progress Notes</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="diagnosisTableBody">
+                                                <!-- Diagnosis records injected by script -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="emptyDiagnosis" class="empty-record-message" style="display: none;">
+                                        No Doctor's Progress Notes.
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="tab-pane fade" id="cdssTab">
+                                <div class="record-card">
+                                    <div class="record-header d-flex align-items-center">
+                                        <i class="bi bi-exclamation-octagon-fill fs-3 me-2"></i>
+                                        <div>
+                                            <h4>CDSS Alerts</h4>
+                                            <p class="record-subtitle">
+                                                Clinical Decision Support System (CDSS) alerts clinical decisions.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Sub-Tabs for CDSS with Descriptions -->
+                                    <ul class="nav nav-pills mb-3" id="cdssSubTabs" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="cdssAlertTabBtn" data-bs-toggle="tab" data-bs-target="#cdssAlertPane" type="button" role="tab" aria-controls="cdssAlertPane" aria-selected="true">
+                                                CDSS Alert
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="practiceAlertTabBtn" data-bs-toggle="tab" data-bs-target="#practiceAlertPane" type="button" role="tab" aria-controls="practiceAlertPane" aria-selected="false">
+                                                Practice Created Alert
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="registryAlertTabBtn" data-bs-toggle="tab" data-bs-target="#registryAlertPane" type="button" role="tab" aria-controls="registryAlertPane" aria-selected="false">
+                                                Registry Alert
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="dosingAlertTabBtn" data-bs-toggle="tab" data-bs-target="#dosingAlertPane" type="button" role="tab" aria-controls="dosingAlertPane" aria-selected="false">
+                                                Medication Dosing Alert
+                                            </button>
+                                        </li>
+                                    </ul>
+
+                                    <!-- Tab Contents -->
+                                    <div class="tab-content" id="cdssSubTabsContent">
+                                        <!-- ========== CDSS ALERT ========== -->
+                                        <div class="tab-pane fade show active" id="cdssAlertPane" role="tabpanel">
+                                            <h5>CDSS Alert Records</h5>
+                                            <button class="btn btn-info" onclick="openCdssAlertForm('cdss')">+ Add Alert</button>
+
+                                            <div class="table-responsive modal-table-scroll">
+                                                <table class="table table-bordered">
+                                                    <thead class="table-dark">
+                                                        <tr>
+                                                            <th>Type</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="cdssAlertTableBody">
+                                                        <!-- Rows injected by JavaScript -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div id="emptyCdssAlert" class="empty-record-message" style="display: none;">
+                                                No CDSS alerts found.
+                                            </div>
+                                        </div>
+
+                                        <!-- ========== PRACTICE CREATED ALERT ========== -->
+                                        <div class="tab-pane fade" id="practiceAlertPane" role="tabpanel" aria-labelledby="practiceAlertTabBtn">
+                                            <h5>Practice Created Alerts</h5>
+                                            <button class="btn btn-info" onclick="openCdssAlertForm('practice')">
+                                                + Add Alert
+                                            </button>
+                                            <div class="table-responsive modal-table-scroll">
+                                                <table class="table table-bordered">
+                                                    <thead class="table-dark">
+                                                        <tr>
+                                                            <th>Type of Alert</th>
+                                                            <th>Due Date</th>
+                                                            <th>Indicator</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="practiceAlertTableBody">
+                                                        <!-- Rows injected by JavaScript -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div id="emptyPracticeAlert" class="empty-record-message" style="display: none;">
+                                                No practice-created alerts found.
+                                            </div>
+                                        </div>
+
+                                        <!-- ========== REGISTRY ALERT ========== -->
+                                        <div class="tab-pane fade" id="registryAlertPane" role="tabpanel" aria-labelledby="registryAlertTabBtn">
+                                            <h5>Registry Alerts</h5>
+                                            <button class="btn btn-info" onclick="openCdssAlertForm('registry')">
+                                                + Add Alert
+                                            </button>
+                                            <div class="table-responsive modal-table-scroll">
+                                                <table class="table table-bordered">
+                                                    <thead class="table-dark">
+                                                        <tr>
+                                                            <th>Type of Alert</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="registryAlertTableBody">
+                                                        <!-- Rows injected by JavaScript -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div id="emptyRegistryAlert" class="empty-record-message" style="display: none;">
+                                                No registry alerts found.
+                                            </div>
+                                        </div>
+
+                                        <!-- ========== MEDICATION DOSING ALERT ========== -->
+                                        <div class="tab-pane fade" id="dosingAlertPane" role="tabpanel">
+                                            <h5>Medication Dosing Alerts</h5>
+                                            <div class="table-responsive modal-table-scroll">
+                                                <table class="table table-bordered">
+                                                    <thead class="table-dark">
+                                                        <tr>
+                                                            <th>Type</th>
+                                                            <th>Description</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="dosingAlertsTableBody"></tbody>
+                                                </table>
+                                            </div>
+                                            <div id="emptyDosingAlerts" class="empty-record-message" style="display: none;">
+                                                No dosing alerts found.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.tab-content -->
+                                </div>
+                            </div>
+
+                            <!-- TPR/I&O Tab -->
+                            <div class="tab-pane fade" id="tprIoTab">
+                                <div class="record-card">
+                                    <div class="record-header d-flex align-items-center">
+                                        <i class="bi bi-thermometer-half fs-3 me-2"></i>
+                                        <div>
+                                            <h4>TPR/I&O</h4>
+                                            <p class="record-subtitle">Manage patient vital signs and intake/output.</p>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-info" onclick="openTprIoForm()">Add TPR/I&O Record</button>
+                                    <div class="table-responsive modal-table-scroll">
+                                        <table class="table table-bordered">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th>Date & Time</th>
+                                                    <th>Details</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tprIoTableBody">
+                                                <!-- TPR/I&O records injected by script -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="emptyTprIo" class="empty-record-message" style="display: none;">
+                                        No TPR/I&O records.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Planning Tab -->
+                            <div class="tab-pane fade" id="planningTab">
+                                <div class="record-card">
+                                    <div class="record-header d-flex align-items-center">
+                                        <i class="bi bi-clipboard-check fs-3 me-2"></i>
+                                        <div>
+                                            <h4>Discharge Plan</h4>
+                                            <p class="record-subtitle">Manage patient care plans.</p>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-info" onclick="openPlanningForm()">Add Planning</button>
+                                    <div class="table-responsive modal-table-scroll">
+                                        <table class="table table-bordered">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Plan</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="planningTableBody">
+                                                <!-- Planning records injected by script -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="emptyPlanning" class="empty-record-message" style="display: none;">
+                                        No planning records.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Add/Edit CDSS Alert Form Modal -->
+                            <div class="modal fade" id="cdssAlertFormModal" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="cdssAlertFormModalTitle">Add New Alert</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Hidden field to store alert category -->
+                                            <input type="hidden" id="alertCategory" value="cdss" />
+                                            <!-- Alert Type Input -->
+                                            <div class="mb-3">
+                                                <label for="alertTypeInput" class="form-label">Alert Type</label>
+                                                <input type="text" class="form-control" id="alertTypeInput" placeholder="Enter alert type" />
+                                            </div>
+                                            <!-- Indicator Dropdown (Red or Blue only) - Hidden as it's auto-calculated -->
+                                            <div class="mb-3" id="indicatorContainer" style="display: none;">
+                                                <label for="alertIndicatorInput" class="form-label">Indicator</label>
+                                                <select id="alertIndicatorInput" class="form-select">
+                                                    <option value="red">Red</option>
+                                                    <option value="blue">Blue</option>
+                                                </select>
+                                            </div>
+                                            <!-- Due Date (only for Practice alerts) -->
+                                            <div class="mb-3" id="dateWhenDueContainer" style="display: none;">
+                                                <label for="alertDueDateInput" class="form-label">Due Date</label>
+                                                <input type="date" class="form-control" id="alertDueDateInput" />
+                                                <small class="form-text text-muted">
+                                                    Indicator will be automatically set: Blue for less than 90 days from today, Red for 90 days or more.
+                                                </small>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn-primary" onclick="saveCdssAlertForm()">Save Alert</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+<!-- Reconciliation Tab -->
+<div class="tab-pane fade" id="reconciliationTab">
+    <div class="record-card">
+      <div class="record-header d-flex align-items-center">
+        <i class="bi bi-journal-text fs-3 me-2"></i>
+        <div>
+          <h4>Reconciliation</h4>
+          <p class="record-subtitle">Medication Reconciliation Record.</p>
+        </div>
+      </div>
+          <!-- Add Button -->
+    <div class="mb-3">
+        <button class="btn btn-info" onclick="openReconciliationForm()">
+          <i class="bi bi-plus-circle me-1"></i> Add Reconciliation
+        </button>
+      </div>
+
+
+      <!-- Reconciliation Table -->
+      <div class="table-responsive modal-table-scroll mb-3">
+        <table class="table table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th>Drug</th>
+              <th>Time</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="reconciliationTableBody">
+            <!-- Injected by JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyReconciliation" class="empty-record-message text-muted" style="display: none;">
+        No Reconciliation record available.
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- MAR Tab -->
+<div class="tab-pane fade" id="marTab">
+    <div class="record-card">
+      <div class="record-header d-flex align-items-center">
+        <i class="bi bi-journal-text fs-3 me-2"></i>
+        <div>
+          <h4>MAR</h4>
+          <p class="record-subtitle">Medication Administration Record.</p>
+        </div>
+      </div>
+      <!-- Button to open modal for a new MAR record -->
+      <div class="mb-3">
+        <button class="btn btn-info" onclick="openMARModal()">
+          <i class="bi bi-plus-circle me-1"></i>Add MAR Record
+        </button>
+      </div>
+      <!-- Container where the MAR records table is injected -->
+      <div id="marRecordsContainer">
+        <!-- Table will be generated by loadMARRecordsDisplay() -->
+      </div>
+    </div>
+  </div>
+
+
+                            <!-- History Tab -->
+                            <div class="tab-pane fade" id="historyTab">
+                                <div class="record-card">
+                                    <div class="record-header d-flex align-items-center">
+                                        <i class="bi bi-clock-history fs-3 me-2"></i>
+                                        <div>
+                                            <h4>History</h4>
+                                            <p class="record-subtitle">Review patient history notes.</p>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-info" onclick="openHistoryForm()">Add History</button>
+                                    <div class="table-responsive modal-table-scroll">
+                                        <table class="table table-bordered">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Note</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="historyTableBody">
+                                                <!-- History records injected by script -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="emptyHistory" class="empty-record-message" style="display: none;">
+                                        No history records.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Nursing Notes Tab -->
+                            <div class="tab-pane fade" id="nursingNotesTab">
+                                <div class="record-card">
+                                    <div class="record-header d-flex align-items-center">
+                                        <i class="bi bi-journal-medical fs-3 me-2"></i>
+                                        <div>
+                                            <h4>Nursing Notes</h4>
+                                            <p class="record-subtitle">Record nursing observations.</p>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-info" onclick="openNursingNotesForm()">Add Nursing Note</button>
+                                    <div class="table-responsive modal-table-scroll">
+                                        <table class="table table-bordered">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Note</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="nursingNotesTableBody">
+                                                <!-- Nursing notes injected by script -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="emptyNursing" class="empty-record-message" style="display: none;">
+                                        No nursing notes.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Pay Bills Tab -->
+                            <div class="tab-pane fade" id="payBillsTab">
+                                <div class="record-card">
+                                    <div class="record-header d-flex align-items-center">
+                                        <i class="bi bi-cash-stack fs-3 me-2"></i>
+                                        <div>
+                                            <h4>Pay Bills</h4>
+                                            <p class="record-subtitle">Manage billing and payments.</p>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-info" onclick="openPayBillsForm()">Add Pay Bill</button>
+                                    <div class="table-responsive modal-table-scroll">
+                                        <table class="table table-bordered">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th>Debt</th>
+                                                    <th>Credit</th>
+                                                    <th>Balance</th>
+                                                    <th>Overdue</th>
+                                                    <th>Next Due</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="payBillsTableBody">
+                                                <!-- Pay Bills records injected by script -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="emptyPayBills" class="empty-record-message" style="display: none;">
+                                        No pay bills records.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Appointment Tab -->
+                            <div class="tab-pane fade" id="appointmentTab">
+                                <div class="record-card">
+                                    <div class="record-header d-flex align-items-center">
+                                        <i class="bi bi-calendar-check fs-3 me-2"></i>
+                                        <div>
+                                            <h4>Appointment</h4>
+                                            <p class="record-subtitle">Manage appointments.</p>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-info" onclick="openAppointmentForm()">Add Appointment</button>
+                                    <div class="table-responsive modal-table-scroll">
+                                        <table class="table table-bordered">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Time</th>
+                                                    <th>Contact</th>
+                                                    <th>Ward</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="appointmentTableBody">
+                                                <!-- Appointment records injected by script -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="emptyAppointment" class="empty-record-message" style="display: none;">
+                                        No appointment records.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Details Modal -->
+        <div class="modal fade" id="testDetailsModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h5 id="testTitle" class="modal-title"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+                        <input type="hidden" id="testMode" value="add" />
+                        <div class="mb-3">
+                            <label for="testDateTime" class="form-label">Test Date & Time</label>
+                            <input type="datetime-local" class="form-control" id="testDateTime" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="testType" class="form-label">Test Type</label>
+                            <input type="text" class="form-control" id="testType" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="testResult" class="form-label">Result</label>
+                            <textarea class="form-control" id="testResult" rows="3"></textarea>
+                        </div>
+                        <button type="button" class="btn btn-secondary mb-2" onclick="triggerAddPicture()">Add Picture</button>
+                        <input type="file" id="singleTestImage" accept="image/*" multiple style="display: none;" />
+                        <div id="newImagesContainer" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
+                        <div id="viewTestImageContainer" style="display: none; flex-wrap: wrap; gap: 10px; margin-top: 1rem;"></div>
+                    </div>
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button id="saveBtn" class="btn btn-success" onclick="saveTest()">Save</button>
+                        <button id="deleteBtn" class="btn btn-danger" onclick="deleteTest(currentTestIndex)">Delete</button>
+                        <button id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Patient Info Modal -->
+        <div class="modal fade" id="patientInfoModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content animate__animated animate__zoomIn">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Patient Information</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="patientInfoId" />
+
+                        <!-- View Mode -->
+                        <div id="patientInfoViewMode">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Name</label>
+                                    <div class="form-control bg-light" id="pi_name">—</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Birthday</label>
+                                    <div class="form-control bg-light" id="pi_birthday">—</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Age</label>
+                                    <div class="form-control bg-light" id="pi_age">—</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Gender</label>
+                                    <div class="form-control bg-light" id="pi_gender">—</div>
+                                </div>
+                            </div>
+                            <hr class="my-3">
+                            <h6 class="mb-3">Additional Information</h6>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Weight</label>
+                                    <div class="form-control bg-light" id="pi_weight">—</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Height</label>
+                                    <div class="form-control bg-light" id="pi_height">—</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Ethnicity</label>
+                                    <div class="form-control bg-light" id="pi_ethnicity">—</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Contact</label>
+                                    <div class="form-control bg-light" id="pi_contact">—</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Edit Mode -->
+                        <div id="patientInfoEditMode" style="display: none;">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="patientName" class="form-label">Name</label>
+                                    <input type="text" id="patientName" class="form-control" disabled />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="patientBirthday" class="form-label">Birthday</label>
+                                    <input type="date" id="patientBirthday" class="form-control" disabled />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="patientAge" class="form-label">Age</label>
+                                    <input type="number" id="patientAge" class="form-control" disabled />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="patientGender" class="form-label">Gender</label>
+                                    <input type="text" id="patientGender" class="form-control" disabled />
+                                </div>
+                            </div>
+                            <hr class="my-3">
+                            <h6 class="mb-3">Additional Information</h6>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="patientWeight" class="form-label">Weight (kg)</label>
+                                    <input type="number" id="patientWeight" class="form-control" placeholder="e.g. 70" />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="patientHeight" class="form-label">Height (cm)</label>
+                                    <input type="number" id="patientHeight" class="form-control" placeholder="e.g. 175" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="patientEthnicity" class="form-label">Ethnicity</label>
+                                    <input type="text" id="patientEthnicity" class="form-control" placeholder="Enter ethnicity" />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="patientContact" class="form-label">Contact</label>
+                                    <input type="text" id="patientContact" class="form-control" placeholder="Enter contact info" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- View Mode Buttons -->
+                        <div id="patientInfoViewButtons">
+                            <button class="btn btn-primary" onclick="enablePatientInfoEditing()">Edit</button>
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                        <!-- Edit Mode Buttons -->
+                        <div id="patientInfoEditButtons" style="display: none;">
+                            <button class="btn btn-danger" onclick="deletePatientInfo()">Clear Info</button>
+                            <button class="btn btn-secondary" onclick="switchToViewMode()">Cancel</button>
+                            <button class="btn btn-primary" onclick="savePatientInfo()">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medication Modal -->
+        <div class="modal fade" id="medicationModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="max-width: 600px;">
+                <div class="modal-content animate__animated animate__zoomIn">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Medication Record</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="medIndex" />
+
+                        <!-- View Mode Content -->
+                        <div id="medViewContent">
+                            <div class="mb-3">
+                                <label class="form-label">Date</label>
+                                <div id="viewMedDate" class="form-control bg-light"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Medication</label>
+                                <div id="viewMedDetails" class="form-control bg-light" style="min-height: 200px; white-space: pre-line;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Edit Mode Content -->
+                        <div id="medEditContent" style="display: none;">
+                            <div class="mb-3">
+                                <label for="medDate" class="form-label">Date</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="medDate" placeholder="MM/DD/YYYY" />
+                                    <span class="input-group-text">
+                                        <i class="bi bi-calendar"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="medName" class="form-label">Medication</label>
+                                <textarea class="form-control" id="medName" placeholder="Enter medication details" rows="10"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <!-- View mode buttons -->
+                        <div id="medViewButtons">
+                            <button id="medViewEditBtn" type="button" class="btn btn-primary rounded-pill px-4" onclick="switchToEditMode()">Edit</button>
+                            <button id="medViewDeleteBtn" type="button" class="btn btn-danger rounded-pill px-4" onclick="deleteMedication()">Delete</button>
+                            <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                        <!-- Edit mode buttons -->
+                        <div id="medEditButtons" style="display: none;">
+                            <button id="medSaveBtn" type="button" class="btn btn-primary rounded-pill px-4" onclick="saveMedication()">Save</button>
+                            <button id="medDeleteBtn" type="button" class="btn btn-danger rounded-pill px-4" onclick="deleteMedication()">Delete</button>
+                            <button type="button" class="btn btn-secondary rounded-pill px-4" onclick="switchToViewMode()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add CDSS Alert Form Modal -->
+        <div class="modal fade" id="cdssAlertFormModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cdssAlertFormModalTitle">Add New Alert</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Alert Type Input -->
+                        <div class="mb-3">
+                            <label for="alertTypeInput" class="form-label">Alert Type</label>
+                            <input type="text" class="form-control" id="alertTypeInput" placeholder="Enter alert type" />
+                        </div>
+                        <!-- Indicator Color Input - Hidden as it's auto-calculated -->
+                        <div class="mb-3" id="indicatorContainer" style="display: none;">
+                            <label for="alertIndicatorInput" class="form-label">Indicator Color</label>
+                            <input type="color" class="form-control form-control-color" id="alertIndicatorInput" value="#cccccc" title="Choose your color" />
+                        </div>
+                        <!-- Due Date (only for Practice alerts) -->
+                        <div class="mb-3" id="dateWhenDueContainer" style="display: none;">
+                            <label for="alertDueDateInput" class="form-label">Due Date</label>
+                            <input type="date" class="form-control" id="alertDueDateInput" />
+                            <small class="form-text text-muted">
+                                Indicator will be automatically set: Blue for less than 90 days from today, Red for 90 days or more.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" onclick="saveCdssAlertForm()">Save Alert</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Suppression Modal -->
+        <div class="modal fade" id="suppressModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-warning text-dark">
+                        <!-- Title will be set dynamically via openSuppressModal() -->
+                        <h5 id="suppressModalTitle" class="modal-title">Suppress Alert</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Alert info and current suppression status -->
+                        <div class="alert alert-info mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-info-circle-fill me-2 fs-5"></i>
+                                <div>
+                                    <strong>Alert Information</strong>
+                                    <p id="currentSuppressInfo" class="mb-0 mt-1"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Interval Buttons with better organization -->
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <strong>Choose Suppression Interval</strong>
+                            </div>
+                            <div class="card-body" id="suppress-buttons-container">
+                                <div class="mb-2">
+                                    <label class="form-label text-muted small">Weeks:</label>
+                                    <div class="btn-group mb-2 w-100" role="group">
+                                        <button class="btn btn-outline-primary suppress-interval-btn" data-interval="1W" onclick="setSuppressInterval('1W', this)">1 Week</button>
+                                        <button class="btn btn-outline-primary suppress-interval-btn" data-interval="2W" onclick="setSuppressInterval('2W', this)">2 Weeks</button>
+                                        <button class="btn btn-outline-primary suppress-interval-btn" data-interval="3W" onclick="setSuppressInterval('3W', this)">3 Weeks</button>
+                                        <button class="btn btn-outline-primary suppress-interval-btn" data-interval="4W" onclick="setSuppressInterval('4W', this)">4 Weeks</button>
+                                    </div>
+                                </div>
+
+                                <div class="mb-2">
+                                    <label class="form-label text-muted small">Months:</label>
+                                    <div class="btn-group mb-2 w-100" role="group">
+                                        <button class="btn btn-outline-primary suppress-interval-btn" data-interval="2M" onclick="setSuppressInterval('2M', this)">2 Months</button>
+                                        <button class="btn btn-outline-primary suppress-interval-btn" data-interval="3M" onclick="setSuppressInterval('3M', this)">3 Months</button>
+                                        <button class="btn btn-outline-primary suppress-interval-btn" data-interval="6M" onclick="setSuppressInterval('6M', this)">6 Months</button>
+                                        <button class="btn btn-outline-primary suppress-interval-btn" data-interval="1Y" onclick="setSuppressInterval('1Y', this)">1 Year</button>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3">
+                                    <button class="btn btn-danger suppress-interval-btn w-100" data-interval="Never" onclick="setSuppressInterval('Never', this)">
+                                        <i class="bi bi-bell-slash-fill me-1"></i> Never Remind
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reason Selection Card -->
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <strong>Suppression Reason</strong>
+                            </div>
+                            <div class="card-body">
+                                <!-- Reason Radio Buttons -->
+                                <div class="mb-3">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="suppressReasonType" id="reasonMedical" value="Medical" checked />
+                                        <label class="form-check-label" for="reasonMedical">Medical Reason</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="suppressReasonType" id="reasonPatient" value="Patient" />
+                                        <label class="form-check-label" for="reasonPatient">Patient Request</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="suppressReasonType" id="reasonSystem" value="System" />
+                                        <label class="form-check-label" for="reasonSystem">System/Technical</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="suppressReasonType" id="reasonErroneous" value="Erroneous" />
+                                        <label class="form-check-label" for="reasonErroneous">Erroneous Alert</label>
+                                    </div>
+                                </div>
+
+                                <!-- Details Textarea -->
+                                <div>
+                                    <label for="suppressReasonText" class="form-label">Additional Details:</label>
+                                    <textarea id="suppressReasonText" class="form-control" rows="2" placeholder="Enter additional details about why this alert is being suppressed..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="applySuppressionBtn" class="btn btn-warning" onclick="applySuppress()">
+                            <i class="bi bi-bell-slash me-1"></i> Apply Suppression
+                        </button>
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Alert Modal -->
+        <div class="modal fade" id="viewAlertModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">View Alert</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Patient info -->
+                        <div class="mb-3">
+                            <p><strong>Patient:</strong> <span id="viewAlertPatientInfo">P782619 - 123</span></p>
+                        </div>
+
+                        <!-- Alert Type - shown for all alert types -->
+                        <div class="mb-3">
+                            <p><strong>Type:</strong> <span id="viewAlertType"></span></p>
+                        </div>
+
+                        <!-- Allergies - shown for Medication alerts -->
+                        <div id="viewAlertAllergiesContainer" class="mb-3 alert-field-allergies" style="display: none;">
+                            <p><strong>Allergies:</strong> <span id="viewAlertAllergies"></span></p>
+                        </div>
+
+                        <!-- Due Date - shown for Practice alerts -->
+                        <div id="viewAlertDueDateContainer" class="mb-3 alert-field-due-date" style="display: none; background-color: #e8f5e9; padding: 10px; border-radius: 4px;">
+                            <p><strong>Due Date:</strong> <span id="viewAlertDueDate"></span></p>
+                        </div>
+
+                        <!-- Indicator - shown for Practice alerts -->
+                        <div id="viewAlertIndicatorContainer" class="mb-3 alert-field-indicator" style="display: none; background-color: #e3f2fd; padding: 10px; border-radius: 4px;">
+                            <p><strong>Indicator:</strong> <span id="viewAlertIndicator"></span></p>
+                        </div>
+
+                        <!-- Suppression status - shown for CDSS and Practice alerts -->
+                        <div id="viewAlertSuppressionStatusContainer" class="mb-3" style="display: none;">
+                            <p><strong>Suppressed Until:</strong> <span id="viewAlertUntil">Not set</span></p>
+                        </div>
+                    </div>
+                    <div class="modal-footer" id="viewAlertModalFooter">
+                        <button class="btn btn-warning" id="hideAlertBtn">Hide</button>
+                        <button class="btn btn-danger" id="deleteAlertBtn">Delete Alert</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Alert Modal -->
+        <div class="modal fade" id="editAlertModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editAlertModalTitle">Edit Alert</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Hidden field for alert index -->
+                        <input type="hidden" id="editAlertIndex" />
+                        <!-- Common field: Alert Type -->
+                        <div class="mb-3">
+                            <label for="editAlertTypeInput" class="form-label">Alert Type</label>
+                            <input type="text" class="form-control" id="editAlertTypeInput" />
+                        </div>
+                        <!-- Field for Suppressed Until -->
+                        <div class="mb-3">
+                            <label for="editAlertUntilInput" class="form-label">Suppressed Until</label>
+                            <input type="text" class="form-control" id="editAlertUntilInput" placeholder="e.g., 3W" />
+                        </div>
+                        <!-- Field for Reason -->
+                        <div class="mb-3">
+                            <label for="editAlertReasonInput" class="form-label">Reason</label>
+                            <select id="editAlertReasonInput" class="form-select">
+                                <option value="Medical">Medical</option>
+                                <option value="Patient">Patient</option>
+                                <option value="System">System</option>
+                                <option value="Erroneous">Erroneous</option>
+                            </select>
+                        </div>
+                        <!-- Field for Details -->
+                        <div class="mb-3">
+                            <label for="editAlertReasonTextInput" class="form-label">Details</label>
+                            <textarea id="editAlertReasonTextInput" class="form-control" rows="2" placeholder="Enter details..."></textarea>
+                        </div>
+                        <!-- Practice-specific fields -->
+                        <div class="mb-3" id="editDueDateRow" style="display: none;">
+                            <label for="editAlertDueDateInput" class="form-label">Due Date</label>
+                            <input type="date" class="form-control" id="editAlertDueDateInput" />
+                        </div>
+                        <div class="mb-3" id="editIndicatorRow" style="display: none;">
+                            <label for="editAlertIndicatorInput" class="form-label">Indicator</label>
+                            <select id="editAlertIndicatorInput" class="form-select">
+                                <option value="red">Red</option>
+                                <option value="blue">Blue</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" onclick="saveEditedAlert()">Save Changes</button>
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Medication Dosing Alert Modal -->
+<div class="modal fade" id="viewDosingAlertModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">View Medication Dosing Alert</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Type:</strong> <span id="viewDosingAlertType"></span></p>
+          <p><strong>Description:</strong> <span id="viewDosingAlertDescription"></span></p>
+          <p><strong>Allergies:</strong> <span id="viewDosingAlertAllergies"></span></p>
+          <p><strong>Created:</strong> <span id="viewDosingAlertCreatedAt"></span></p>
+          <p><strong>Suppressed:</strong> <span id="viewDosingAlertSuppressed"></span></p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <!-- Reconciliation Modal -->
+ <div class="modal fade" id="reconciliationModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Reconciliation Record</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Hidden index field -->
+          <input type="hidden" id="reconciliationIndex" value="" />
+
+          <!-- VIEW Mode -->
+          <div id="reconViewContent">
+            <p><strong>Patient:</strong> <span id="viewReconPatient"></span></p>
+            <p><strong>Room No:</strong> <span id="viewReconRoom"></span></p>
+            <p><strong>Drug:</strong> <span id="viewReconDrug"></span></p>
+            <p><strong>Dose:</strong> <span id="viewReconDose"></span></p>
+            <p><strong>Route:</strong> <span id="viewReconRoute"></span></p>
+            <p><strong>Frequency:</strong> <span id="viewReconFrequency"></span></p>
+            <p><strong>Duration:</strong> <span id="viewReconDuration"></span></p>
+            <p><strong>Time:</strong> <span id="viewReconTime"></span></p>
+            <p><strong>Drug Allergies:</strong> <span id="viewReconAllergies"></span></p>
+            <p><strong>Med Ordered on Admission:</strong> <span id="viewReconAdmission"></span></p>
+            <p><strong>Home Meds at Discharge:</strong> <span id="viewReconDischarge"></span></p>
+            <p><strong>Nurse/Doctor:</strong> <span id="viewReconNurseDoctor"></span></p>
+          </div>
+
+          <!-- EDIT Mode -->
+          <div id="reconEditContent" style="display: none;">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Drug</label>
+                <input type="text" class="form-control" id="editReconDrug">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Dose</label>
+                <input type="text" class="form-control" id="editReconDose">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Route</label>
+                <input type="text" class="form-control" id="editReconRoute">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Frequency</label>
+                <input type="text" class="form-control" id="editReconFrequency" placeholder="e.g., Every 8 hours">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Duration</label>
+                <input type="text" class="form-control" id="editReconDuration" placeholder="e.g., 7 days">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Time</label>
+                <input type="datetime-local" class="form-control" id="editReconTime">
+              </div>
+              <div class="col-md-12 mb-3">
+                <label class="form-label">Drug Allergies</label>
+                <input type="text" class="form-control" id="editReconAllergies">
+              </div>
+              <div class="col-md-12 mb-3">
+                <label class="form-label">Medication Ordered on Admission?</label>
+                <select class="form-select" id="editReconMedAdmission">
+                  <option value="">Select</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label class="form-label">Home Medication Continues at Discharge?</label>
+                <select class="form-select" id="editReconHomeMeds">
+                  <option value="">Select</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label class="form-label">Nurse/Doctor</label>
+                <input type="text" class="form-control" id="editReconNurseDoctor" placeholder="Enter name of nurse or doctor">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button id="reconSaveBtn" class="btn btn-success" style="display: none;" onclick="saveEditedReconciliation()">Save Changes</button>
+          <button id="reconDeleteBtn" class="btn btn-danger" style="display: none;" onclick="deleteReconciliationRecord(document.getElementById('reconciliationIndex').value)">Delete</button>
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Reconciliation Table -->
+  <div class="table-responsive modal-table-scroll mb-3">
+    <table class="table table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>Drug</th>
+          <th>Time</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="reconciliationTableBody">
+        <!-- Injected by JS -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Empty State -->
+  <div id="emptyReconciliation" class="empty-record-message text-muted" style="display: none;">
+    No Reconciliation record available.
+  </div>
+</div>
+</div>
+
+
+<!-- Nursing History Modal -->
+<div class="modal fade" id="nursingHistoryModal" tabindex="-1" aria-labelledby="nursingHistoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content animate__animated animate__zoomIn">
+        <div class="modal-header">
+          <h5 class="modal-title" id="nursingHistoryModalLabel">Nursing History</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="nursingHistoryForm">
+            <input type="hidden" id="nursingHistoryIndex">
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="nursingHistoryAllergies" class="form-label">Allergies</label>
+                <textarea class="form-control" id="nursingHistoryAllergies" rows="3" placeholder="Enter allergies"></textarea>
+              </div>
+              <div class="col-md-6">
+                <label for="pastImmunization" class="form-label">Past Immunization</label>
+                <textarea class="form-control" id="pastImmunization" rows="3" placeholder="Enter past immunization details"></textarea>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="nursingHistoryFamily" class="form-label">Family History</label>
+                <textarea class="form-control" id="nursingHistoryFamily" rows="3" placeholder="Enter family history"></textarea>
+              </div>
+              <div class="col-md-6">
+                <label for="nursingHistoryPresent" class="form-label">Present Illness</label>
+                <textarea class="form-control" id="nursingHistoryPresent" rows="3" placeholder="Enter present illness"></textarea>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <label for="nursingHistoryPast" class="form-label">Past Illness</label>
+                <textarea class="form-control" id="nursingHistoryPast" rows="3" placeholder="Enter past illness"></textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="nursingHistorySaveBtn" onclick="saveNursingHistoryRecord()">Save</button>
+          <button type="button" class="btn btn-danger" id="nursingHistoryDeleteBtn" onclick="deleteNursingHistoryRecord()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+        <!-- Nursing Notes Modal -->
+        <div class="modal fade" id="nursingNotesModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content animate__animated animate__zoomIn">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Nursing Note</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="nursingNotesIndex" />
+                        <div class="mb-3">
+                            <label for="nursingNotesDate" class="form-label">Date</label>
+                            <input type="date" class="form-control" id="nursingNotesDate" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="nursingNotesTextInput" class="form-label">Note</label>
+                            <textarea class="form-control" id="nursingNotesTextInput" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="nursingSaveBtn" type="button" class="btn btn-primary" onclick="saveNursingNotesRecord()">Save</button>
+                        <button id="nursingDeleteBtn" type="button" class="btn btn-danger" onclick="deleteNursingNotesRecord()">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pay Bills Modal -->
+        <div class="modal fade" id="payBillsModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content animate__animated animate__zoomIn">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Pay Bills Record</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="payBillsIndex" />
+                        <div class="mb-3">
+                            <label for="billDebtInput" class="form-label">Debt</label>
+                            <input type="number" class="form-control" id="billDebtInput" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="billCreditInput" class="form-label">Credit</label>
+                            <input type="number" class="form-control" id="billCreditInput" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="billBalanceInput" class="form-label">Balance</label>
+                            <input type="number" class="form-control" id="billBalanceInput" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="billOverdueInput" class="form-label">Overdue</label>
+                            <input type="number" class="form-control" id="billOverdueInput" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="billNextDueInput" class="form-label">Next Due</label>
+                            <input type="date" class="form-control" id="billNextDueInput" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="payBillsSaveBtn" type="button" class="btn btn-primary" onclick="savePayBillsRecord()">Save</button>
+                        <button id="payBillsDeleteBtn" type="button" class="btn btn-danger" onclick="deletePayBillsRecord()">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- MAR Modal -->
+<div class="modal fade" id="marModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="marModalTitle" class="modal-title">MAR Record</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Hidden index field -->
+          <input type="hidden" id="marIndex" />
+          <!-- Edit Section: input fields for add/edit mode -->
+          <div id="marEditSection">
+            <div class="mb-3">
+              <label for="marPatientName" class="form-label">Name</label>
+              <input type="text" class="form-control" id="marPatientName" placeholder="Patient name" readonly />
+            </div>
+            <div class="mb-3">
+              <label for="marRoomNo" class="form-label">Room No:</label>
+              <input type="text" class="form-control" id="marRoomNo" placeholder="Enter room number" />
+            </div>
+            <div class="mb-3">
+              <label for="marDrug" class="form-label">Name of Drugs</label>
+              <input type="text" class="form-control" id="marDrug" placeholder="Enter drug name(s)" />
+            </div>
+            <div class="mb-3">
+              <label for="marDose" class="form-label">Dose</label>
+              <input type="text" class="form-control" id="marDose" placeholder="Enter dose" />
+            </div>
+            <div class="mb-3">
+              <label for="marRoute" class="form-label">Route</label>
+              <input type="text" class="form-control" id="marRoute" placeholder="Enter route" />
+            </div>
+            <div class="mb-3">
+              <label for="marTime" class="form-label">Time</label>
+              <input type="datetime-local" class="form-control" id="marTime" />
+            </div>
+            <div class="mb-3">
+              <label for="marNurseDoctor" class="form-label">Nurse/Doctor</label>
+              <input type="text" class="form-control" id="marNurseDoctor" placeholder="Enter Nurse/Doctor name" />
+            </div>
+          </div>
+          <!-- View Section: shows record data as plain text -->
+          <div id="marViewSection" style="display: none;">
+            <p><strong>Name:</strong> <span id="viewMarPatientName">test</span></p>
+            <p><strong>Room No:</strong> <span id="viewMarRoomNo">num</span></p>
+            <p><strong>Name of Drugs:</strong> <span id="viewMarDrug"></span></p>
+            <p><strong>Dose:</strong> <span id="viewMarDose"></span></p>
+            <p><strong>Route:</strong> <span id="viewMarRoute"></span></p>
+            <p><strong>Time:</strong> <span id="viewMarTime"></span></p>
+            <p><strong>Nurse/Doctor:</strong> <span id="viewMarNurseDoctor"></span></p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <!-- Action buttons: visible only in edit mode -->
+          <button id="marSaveBtn" type="button" class="btn btn-success" onclick="saveMARRecord()">Save</button>
+          <button id="marDeleteBtn" type="button" class="btn btn-danger" onclick="deleteMARRecord(document.getElementById('marIndex').value)">Delete</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+        <!-- Appointment Modal -->
+        <div class="modal fade" id="appointmentModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content animate__animated animate__zoomIn">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Appointment Record</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="appointmentIndex" />
+                        <div class="mb-3">
+                            <label for="appointmentDate" class="form-label">Date</label>
+                            <input type="date" class="form-control" id="appointmentDate" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="appointmentTime" class="form-label">Time</label>
+                            <input type="time" class="form-control" id="appointmentTime" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="appointmentContact" class="form-label">Contact</label>
+                            <input type="text" class="form-control" id="appointmentContact" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="appointmentWard" class="form-label">Ward</label>
+                            <input type="text" class="form-control" id="appointmentWard" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="appointmentSaveBtn" type="button" class="btn btn-primary" onclick="saveAppointmentRecord()">Save</button>
+                        <button id="appointmentDeleteBtn" type="button" class="btn btn-danger" onclick="deleteAppointmentRecord()">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diagnosis Modal -->
+        <div class="modal fade" id="diagnosisModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content animate__animated animate__zoomIn">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Doctor's Progress Notes</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="diagnosisIndex" />
+                        <div class="mb-3">
+                            <label for="diagnosisDate" class="form-label">Date</label>
+                            <input type="date" class="form-control" id="diagnosisDate" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="diagnosisNote" class="form-label">Diagnosis</label>
+                            <textarea class="form-control" id="diagnosisNote" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="diagnosisSaveBtn" type="button" class="btn btn-primary" onclick="saveDiagnosisRecord()">Save</button>
+                        <button id="diagnosisDeleteBtn" type="button" class="btn btn-danger" onclick="deleteDiagnosisRecord()">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Treatment Modal -->
+        <div class="modal fade" id="treatmentModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content animate__animated animate__zoomIn">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Treatment Record</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="treatmentIndex" />
+                        <div class="mb-3">
+                            <label for="treatmentDateTime" class="form-label">Date & Time</label>
+                            <input type="datetime-local" class="form-control" id="treatmentDateTime" />
+                        </div>
+
+                        <!-- Vital Signs Section -->
+                        <h6 class="mt-4 mb-3 fw-bold">Vital Signs</h6>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Blood Pressure (mmHg)</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="treatmentSystolic" placeholder="Systolic">
+                                    <span class="input-group-text">/</span>
+                                    <input type="number" class="form-control" id="treatmentDiastolic" placeholder="Diastolic">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="treatmentPulse" class="form-label">Pulse Rate (bpm)</label>
+                                <input type="number" class="form-control" id="treatmentPulse" placeholder="60-100" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="treatmentTemp" class="form-label">Temperature (°C)</label>
+                                <input type="number" step="0.1" class="form-control" id="treatmentTemp" placeholder="36.5-37.5" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="treatmentRespRate" class="form-label">Respiratory Rate (bpm)</label>
+                                <input type="number" class="form-control" id="treatmentRespRate" placeholder="12-20" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="treatmentO2Sat" class="form-label">O2 Saturation (%)</label>
+                                <input type="number" class="form-control" id="treatmentO2Sat" placeholder="95-100" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="treatmentPain" class="form-label">Pain Scale (0-10)</label>
+                                <input type="number" min="0" max="10" class="form-control" id="treatmentPain" placeholder="0-10" />
+                            </div>
+                        </div>
+
+                        <!-- Input & Output Section -->
+                        <h6 class="mt-4 mb-3 fw-bold">Input & Output</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="mb-3">Input</h6>
+                                <div class="mb-3">
+                                    <label for="treatmentOral" class="form-label">Oral (mL)</label>
+                                    <input type="number" class="form-control" id="treatmentOral" placeholder="Enter oral intake" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="treatmentIV" class="form-label">IV Fluids (mL)</label>
+                                    <input type="number" class="form-control" id="treatmentIV" placeholder="Enter IV fluid intake" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="treatmentTubeFeeding" class="form-label">Tube Feeding (mL)</label>
+                                    <input type="number" class="form-control" id="treatmentTubeFeeding" placeholder="Enter tube feeding amount" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="treatmentTotalInput" class="form-label fw-bold">Total Input (mL)</label>
+                                    <input type="number" class="form-control" id="treatmentTotalInput" readonly />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="mb-3">Output</h6>
+                                <div class="mb-3">
+                                    <label for="treatmentUrine" class="form-label">Urine (mL)</label>
+                                    <input type="number" class="form-control" id="treatmentUrine" placeholder="Enter urine output" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="treatmentEmesis" class="form-label">Emesis (mL)</label>
+                                    <input type="number" class="form-control" id="treatmentEmesis" placeholder="Enter emesis amount" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="treatmentDrainage" class="form-label">Drainage (mL)</label>
+                                    <input type="number" class="form-control" id="treatmentDrainage" placeholder="Enter drainage amount" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="treatmentTotalOutput" class="form-label fw-bold">Total Output (mL)</label>
+                                    <input type="number" class="form-control" id="treatmentTotalOutput" readonly />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="treatmentNotes" class="form-label">Additional Notes</label>
+                            <textarea class="form-control" id="treatmentNotes" rows="3" placeholder="Enter any additional observations or notes"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="treatmentSaveBtn" type="button" class="btn btn-primary" onclick="saveTreatmentRecord()">Save</button>
+                        <button id="treatmentDeleteBtn" type="button" class="btn btn-danger" onclick="deleteTreatmentRecord()">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Planning Modal -->
+        <div class="modal fade" id="planningModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content animate__animated animate__zoomIn">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Planning Record</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="planningIndex" />
+                        <div class="mb-3">
+                            <label for="planningDate" class="form-label">Date</label>
+                            <input type="date" class="form-control" id="planningDate" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="planningNote" class="form-label">Plan</label>
+                            <textarea class="form-control" id="planningNote" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="planningSaveBtn" type="button" class="btn btn-primary" onclick="savePlanningRecord()">Save</button>
+                        <button id="planningDeleteBtn" type="button" class="btn btn-danger" onclick="deletePlanningRecord()">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- Full Image Modal -->
+        <div class="modal fade" id="fullImageModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img id="fullImageView" src="" alt="Full Image" style="width: 100%;" />
+                    </div>
+                    <div id="fullImageNote" class="modal-body"></div>
+                    <div class="modal-footer" style="justify-content: center; border-top: none; background: #fff;">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TPR/I&O Record Modal -->
+        <div class="modal fade" id="tprIoModal" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content animate__animated animate__zoomIn">
+              <div class="modal-header">
+                <h5 class="modal-title">TPR / I&O Record</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body">
+                <input type="hidden" id="tprIoIndex" />
+
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label for="tprIoDate" class="form-label">Date</label>
+                    <input type="date" class="form-control" id="tprIoDate" />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="tprIoTime" class="form-label">Time</label>
+                    <input type="time" class="form-control" id="tprIoTime" />
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label for="tprIoTemp" class="form-label">Temperature (°C)</label>
+                    <input type="number" step="0.1" class="form-control" id="tprIoTemp" placeholder="36.5-37.5" />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="tprIoPulse" class="form-label">Pulse Rate (BPM)</label>
+                    <input type="number" class="form-control" id="tprIoPulse" placeholder="60-100" />
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label for="tprIoRespRate" class="form-label">Resp. Rate</label>
+                    <input type="number" class="form-control" id="tprIoRespRate" placeholder="12-20" />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="tprIoBp" class="form-label">Blood Pressure</label>
+                    <input type="text" class="form-control" id="tprIoBp" placeholder="120/80" />
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label for="tprIoO2Sat" class="form-label">O2 Saturation (%)</label>
+                    <input type="number" class="form-control" id="tprIoO2Sat" placeholder="95-100" />
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label for="tprIoIntake" class="form-label">Intake (ml)</label>
+                    <input type="number" class="form-control" id="tprIoIntake" placeholder="0" />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="tprIoOutput" class="form-label">Output (ml)</label>
+                    <input type="number" class="form-control" id="tprIoOutput" placeholder="0" />
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="tprIoNotes" class="form-label">Additional Notes</label>
+                  <textarea class="form-control" id="tprIoNotes" rows="3" placeholder="Enter any additional observations or notes"></textarea>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button id="tprIoSaveBtn" type="button" class="btn btn-success" onclick="saveTprIoRecord()">Save</button>
+                <button id="tprIoDeleteBtn" type="button" class="btn btn-danger" onclick="deleteTprIoRecord()">Delete</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Database Reset Confirmation Modal -->
+        <div class="modal fade" id="resetDatabaseModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-warning">
+                        <h5 class="modal-title">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            Reset Database
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="fw-bold">Are you sure you want to reset the database?</p>
+                        <p>This will delete all patient data and cannot be undone.</p>
+                        <p>This action is recommended only if you're experiencing database errors.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger" onclick="confirmResetDatabase()">
+                            <i class="bi bi-trash-fill me-2"></i>Yes, Reset Database
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manage Patients Modal -->
+        <div class="modal fade" id="managePatientModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title">
+                            <i class="bi bi-people-fill me-2"></i>
+                            Manage Patients
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex justify-content-between mb-3">
+                            <div>
+                                <button id="selectAllPatientsBtn" class="btn btn-outline-primary me-2">
+                                    <i class="bi bi-check-all me-1"></i> Select All
+                                </button>
+                                <button id="deselectAllPatientsBtn" class="btn btn-outline-secondary">
+                                    <i class="bi bi-x-lg me-1"></i> Deselect All
+                                </button>
+                            </div>
+                            <button id="deleteSelectedPatientsBtn" class="btn btn-danger" disabled>
+                                <i class="bi bi-trash-fill me-1"></i> Delete Selected Patients
+                            </button>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th style="width: 50px;"><input type="checkbox" id="selectAllCheckbox" class="form-check-input"></th>
+                                        <th>Patient ID</th>
+                                        <th>Name</th>
+                                        <th>Gender</th>
+                                        <th>Age</th>
+                                        <th>Room No.</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="managePatientTableBody">
+                                    <!-- Patient records will be injected here by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="emptyManagePatientMessage" class="text-center py-3 text-muted" style="display: none;">
+                            No patients found in the database.
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Include Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Include your custom scripts -->
+        <script src="./assets/scripts.js"></script>
+        <script src="./tpr-io-functions.js"></script>
+    </body>
+</html>

@@ -1,0 +1,45 @@
+/* Manage Patients Modal Styles */
+.patient-checkbox {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+#selectAllCheckbox {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+#managePatientTableBody tr {
+  transition: background-color 0.2s;
+}
+
+#managePatientTableBody tr:hover {
+  background-color: #f8f9fa;
+}
+
+#managePatientTableBody tr td {
+  vertical-align: middle;
+}
+
+#deleteSelectedPatientsBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+#deleteSelectedPatientsBtn {
+  transition: all 0.3s;
+}
+
+#deleteSelectedPatientsBtn:not(:disabled):hover {
+  background-color: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn-outline-primary:hover, .btn-outline-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s;
+}
